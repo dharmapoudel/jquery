@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta content="charset=utf-8">
+	<title>jQueryTab - lightweight responsive jQuery tab plugin</title>
+	<link rel="stylesheet" href="jQueryTab.css" type="text/css" media="screen" />
+</head>
+<body>
+
+  <div id="container" >
+		<h1> jQueryTab - Yet another responsive tab plugin </h1>
+		<ul class="tabs cf">
+			<li><a href="#tab1">General</a></li>
+			<li><a href="#tab2">Social Media</a></li>
+			<li><a href="#tab3">Copyright</a></li>
+			<li><a href="#tab4">Contact</a></li>
+		</ul>
+		<section class="tab_content" id="tab1">
+			It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+		</section>
+		<section class="tab_content" id="tab2">
+			It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+		</section>
+		<section class="tab_content" id="tab3">
+			Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.  
+		</section>
+		<section class="tab_content" id="tab4">
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+		</section>
+		
+		<div style="padding:10px;">
+			<a class="opentab1" href="#tab2">Open tab directly</a> 
+			<a class="opentab2" href="#tab2">Open tab through url</a>
+			<a class="addmoretabs" href="#"> add more tabs</a>
+		</div>
+  </div>
+  
+<!-- jQuery -->
+<script src="js/jquery-1.7.1.min.js"></script>
+<!-- jQueryTab.js -->
+<script src="js/jQueryTab.js"></script>
+<script type="text/javascript">
+jQuery.jQueryTab({
+			responsive:true,									// enable accordian on smaller screens
+			collapsible:true,									// allow all tabs to collapse on accordians
+			usecookie: true,									// remember last active tab using $.cookie plugin
+			opentabonhover: false,								// open tab on hover
+			cookie: {
+				name: 'active-tab',
+				expires: 4,
+				path: '/',
+				domain:'',
+				secure: false
+			},
+			//cookiename:'active-tab',							// name of the cookie set to remember last active tab
+			tabclass:'tabs',									// class of the tabs
+			headerclass:'accordion_tabs',						// class of the header of accordion on smaller screens
+			containerclass:'tab_content',						// class of container
+			activeclass:'active',								// name of the class used for active tab
+			initialtab: 2,										// tab to open initially; start count at 1 not 0
+			animation:	{
+				tab:	{
+					transition: 'fade',							// transitions to use - normal or fade
+					intime:500,									// time for animation IN (1000 = 1s)
+					outtime:0									// time for animation OUT (1000 = 1s)
+				},
+				accordion:	{
+					transition: 'slide',						// transitions to use - normal or slide
+					intime:500,									// time for animation IN (1000 = 1s)
+					outtime:500									// time for animation OUT (1000 = 1s)
+				}
+			},
+			before: function(){},								// function to call before tab is opened
+			after: function(){}									// function to call after tab is opened
+			
+		}); 
+jQuery('.opentab1').on('click', function(e){
+	$('.tabs').data('jQueryTab').opentab(4);
+	e.preventDefault();
+});
+jQuery('.addmoretabs').on('click', function(e){
+	$('.tabs').append('<li><a href="#tab'+($('.tabs li').length+1)+'">tab'+($('.tabs li').length+1)+'</a></li>');
+	$('.tab_content').last().after('<section class="tab_content" id="tab'+($('.tabs li').length+1)+'">This is the dummy content of section '+($('.tabs li').length)+'</section>');
+	$('.tabs').data('jQueryTab').addHeader();
+	e.preventDefault();
+});
+jQuery(document).ready(function($){
+var hash = window.location.hash;
+	if(hash == '#tab2'){
+		$('.tabs').data('jQueryTab').opentab(3);
+	}
+});
+</script>
+</body>
+</html>
