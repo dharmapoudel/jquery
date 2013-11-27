@@ -37,7 +37,7 @@
 		
 		<div style="padding:10px;">
 			<a class="opentab1" href="#tab2">Open tab directly</a> 
-			<a class="opentab2" href="#tab2">Open tab through url</a>
+			<a class="opentab2" target="_blank" href="#tab2">Open tab through url</a>
 			<a class="addmoretabs" href="#"> add more tabs</a>
 		</div>
   </div>
@@ -48,41 +48,42 @@
 <script src="js/jQueryTab.js"></script>
 <script type="text/javascript">
 jQuery.jQueryTab({
-			responsive:true,									// enable accordian on smaller screens
-			collapsible:true,									// allow all tabs to collapse on accordians
-			usecookie: true,									// remember last active tab using $.cookie plugin
-			opentabonhover: false,								// open tab on hover
-			cookie: {
-				name: 'active-tab',
-				expires: 4,
-				path: '/',
-				domain:'',
-				secure: false
-			},
-			//cookiename:'active-tab',							// name of the cookie set to remember last active tab
-			tabclass:'tabs',									// class of the tabs
-			headerclass:'accordion_tabs',						// class of the header of accordion on smaller screens
-			containerclass:'tab_content',						// class of container
-			activeclass:'active',								// name of the class used for active tab
-			initialtab: 2,										// tab to open initially; start count at 1 not 0
-			animation:	{
-				tab:	{
-					transition: 'fade',							// transitions to use - normal or fade
-					intime:500,									// time for animation IN (1000 = 1s)
-					outtime:0									// time for animation OUT (1000 = 1s)
-				},
-				accordion:	{
-					transition: 'slide',						// transitions to use - normal or slide
-					intime:500,									// time for animation IN (1000 = 1s)
-					outtime:500									// time for animation OUT (1000 = 1s)
-				}
-			},
-			before: function(){},								// function to call before tab is opened
-			after: function(){}									// function to call after tab is opened
-			
-		}); 
-jQuery('.opentab1').on('click', function(e){
-	$('.tabs').data('jQueryTab').opentab(4);
+	responsive:true,							// enable accordian on smaller screens
+	collapsible:true,							// allow all accordions to collapse 
+	useCookie: true,							// remember last active tab using cookie
+	openOnhover: false,						// open tab on hover
+	initialTab: 4,								// tab to open initially; start count at 1 not 0
+	
+	cookieName: 'active-tab',			// name of the cookie set to remember last active tab
+	cookieExpires: 4,							// when it expires in days or standard UTC time
+	cookiePath: '/',							// path on which cookie is accessible
+	cookieDomain:'',							// domain of the cookie
+	cookieSecure: false,					// enable secure cookie - requires https connection to transfer
+	
+	tabClass:'tabs',							// class of the tabs
+	headerClass:'accordion_tabs',	// class of the header of accordion on smaller screens
+	contentClass:'tab_content',		// class of container
+	activeClass:'active',					// name of the class used for active tab
+	
+	tabTransition: 'fade',				// transitions to use - normal or fade
+	tabIntime:500,								// time for animation IN (1000 = 1s)
+	tabOuttime:0,									// time for animation OUT (1000 = 1s)
+	
+	accordionTransition: 'slide',	// transitions to use - normal or slide
+	accordionIntime:500,					// time for animation IN (1000 = 1s)
+	accordionOuttime:400,					// time for animation OUT (1000 = 1s)
+
+	before: function(){},					// function to call before tab is opened
+	after: function(){}						// function to call after tab is opened
+});
+
+
+
+var random_no = 1+(~~(Math.random()*100) % 4);
+jQuery('.opentab2').attr('href', '#tab'+(1+(~~(Math.random()*100) % 4)));
+
+jQuery('.opentab1').attr('href', '#tab'+random_no).on('click', function(e){
+	$('.tabs').data('jQueryTab').openTab(random_no);
 	e.preventDefault();
 });
 jQuery('.addmoretabs').on('click', function(e){
@@ -92,11 +93,10 @@ jQuery('.addmoretabs').on('click', function(e){
 	e.preventDefault();
 });
 jQuery(document).ready(function($){
-var hash = window.location.hash;
-	if(hash == '#tab2'){
-		$('.tabs').data('jQueryTab').opentab(3);
-	}
+	var hash = window.location.hash;
+	if(hash) $('.tabs').data('jQueryTab').openTab(parseInt(hash.replace('#tab','')));
 });
+
 </script>
 </body>
 </html>
