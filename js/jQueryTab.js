@@ -1,26 +1,24 @@
-// v 1.3
-if(Object.create !=='function'){
-	Object.create = function(obj){
-		function F(){};
-		F.prototype = obj;
-		return new F();
-	}
-}
+/*
+Author: Dharma Poudel (@rogercomred)
+Description: A jquery tab plugin.
+Version: 1.4
+License:  GPLv3 ( http://www.gnu.org/licenses/gpl-3.0.html )
+*/
+
 ;(function($, window, document, undefined){
 var jQueryTab = {
 	init:function(opts){
 		var self = this;							// cache this into self
-		self.opts = $.extend (true, {}, $.jQueryTab.defaults, opts );		// merge two objects into an empty objects, preserving both
+		self.opts = opts;
 		self.opts.initialTab -= 1;																	// subtract 1 from initialTab; count starts at 1 not 0
 		self.opts.tabClass = '.' + self.opts.tabClass;							// add '.' before tabClass
 		self.opts.contentClass = '.' + self.opts.contentClass;	// add '.' before contentClass
-				
+		
 		self.getactivetab(); 																				// get the tab to open initially
 		$(self.opts.tabClass).find("li") .eq(self.currentTab).addClass(self.opts.activeClass);				//activate last active tab or specified tab or default tab
 		$(self.opts.contentClass).hide().eq(self.currentTab).fadeIn(self.opts.inanimationtime);			// show corresponding tab content
 		$(self.opts.tabClass) .on((self.opts.openOnhover)?'click.jqeryTab, mouseenter.jqeryTab' :'click.jqeryTab' , "a", function(){										// when tab is clicked
 			(typeof self.opts.before === 'function') ? self.opts.before.apply( this, arguments ) : '';		// call fxn before
-			//console.log(self);
 			self.handleEvent.call(this, self);															// call handleEvent fxn; self.opts - data values
 			(typeof self.opts.after === 'function') ? self.opts.after.apply( this, arguments ) : '';		// call fxn after
 			return false;																					// prevent default behaviour
@@ -45,7 +43,6 @@ var jQueryTab = {
 			: self.opts.initialTab;																			// else set to initial tab
 	},
 	handleEvent: function(obj){
-		console.log(obj);
 		var self = obj;
 		if($(this).parent().hasClass(self.opts.activeClass)) return;												// do nothing when active tab is clicked
 		var $index = $(this).parent().index();																	// get the index of current tab
@@ -63,7 +60,7 @@ var jQueryTab = {
 	},
 	handleEventResponsive: function(obj){
 		var self = obj;
-		$index = parseInt(($(this).next().index())/2 - 1, 10);												// get the index of current accordion
+		$index = Math.floor(($(this).next().index() -1)/2 );											// get the index of current accordion
 		if(($(this).hasClass(self.opts.activeClass)) && !self.opts.collapsible) return;								// if active and not collapsible - do nothing
 		else if(($(this).hasClass(self.opts.activeClass)) && self.opts.collapsible){									// if active and collapsible
 			$('.'+self.opts.headerClass).removeClass(self.opts.activeClass);											// 		remove active class from all accordian headers
@@ -89,7 +86,7 @@ var jQueryTab = {
 		var self = this;																					// cache current object into self
 		$('.'+self.opts.headerClass).remove();																// remove all existing headers
 		$(self.opts.tabClass).find("a").each(function(){													// iterate for each  tabs
-			var $tab_content = $(self.opts.contentClass).eq($(this).parent().index());					// get corresponding tab content
+			var $tab_content = $(self.opts.contentClass).eq($(this).parent().index());						// get corresponding tab content
 			$('<a />').attr({																				// create a element with jquery
 							'class': ($(this).parent().hasClass('active'))									// if this tab is active
 										? self.opts.headerClass + ' active'									// add active class along with headerClass 
@@ -125,7 +122,7 @@ var jQueryTab = {
 			var cookieArray = document.cookie.split(";");
 			for(var i=0; i < cookieArray.length; i++){
 				var cookie = jQuery.trim(cookieArray[i]);
-        if(cookie.indexOf(name)==0) 
+		if(cookie.indexOf(name)==0) 
 					return decodeURIComponent(cookie.substring(name.length, cookie.length));
 			}
 		}
@@ -150,38 +147,41 @@ var jQueryTab = {
 		}
 	}
 };
-$.jQueryTab = 	function(opts){
-		var JT = Object.create(jQueryTab);					// create instance of jQueryTab object
-		JT.init(opts);															// call the init fxn
-		$('.'+opts.tabClass).data('jQueryTab', JT);	// Store a reference to the jQueryTab object
-};
-$.jQueryTab.defaults = {
-		responsive:true,							// enable accordian on smaller screens
-		collapsible:false,						// allow all tabs to collapse on accordians
-		useCookie: true,							// remember last active tab using cookie
-		openOnhover: false,					// open tab on hover
-		initialTab: 1,								// tab to open initially; start count at 1 not 0
-		
-		cookieName: 'active-tab',			// name of the cookie set to remember last active tab
-		cookieExpires: 365,						// when it expires in days or standard UTC time
-		cookiePath: '',								// path on which cookie is accessible
-		cookieDomain:'',							// domain of the cookie
-		cookieSecure: false,					// enable secure cookie - requires https connection to transfer
-		
-		tabClass:'tabs',							// class of the tabs
-		headerClass:'accordion_tabs',	// class of the header of accordion on smaller screens
-		contentClass:'tab_content',	// class of container
-		activeClass:'active',					// name of the class used for active tab
-		
-		tabTransition: 'fade',				// transitions to use - normal or fade
-		tabIntime:500,								// time for animation IN (1000 = 1s)
-		tabOuttime:0,									// time for animation OUT (1000 = 1s)
-		
-		accordionTransition: 'slide',	// transitions to use - normal or slide
-		accordionIntime:500,					// time for animation IN (1000 = 1s)
-		accordionOuttime:400,					// time for animation OUT (1000 = 1s)
 
-		before: function(){},					// function to call before tab is opened
-		after: function(){}						// function to call after tab is opened
-	};
+$.jQueryTab = 	function(opts){
+	var JT = Object.create(jQueryTab);			// create instance of jQueryTab object
+	var opts = $.extend (true, {}, $.jQueryTab.defaults, opts );	// merge two objects into an empty objects, preserving both
+	JT.init(opts);								// call the init fxn
+	$(opts.tabClass).data('jQueryTab', JT);	// Store a reference to the jQueryTab object
+};
+
+$.jQueryTab.defaults = {
+	responsive:true,				// enable accordian on smaller screens
+	collapsible:false,				// allow all tabs to collapse on accordians
+	useCookie: true,				// remember last active tab using cookie
+	openOnhover: false,				// open tab on hover
+	initialTab: 1,					// tab to open initially; start count at 1 not 0
+
+	cookieName: 'active-tab',		// name of the cookie set to remember last active tab
+	cookieExpires: 365,				// when it expires in days or standard UTC time
+	cookiePath: '',					// path on which cookie is accessible
+	cookieDomain:'',				// domain of the cookie
+	cookieSecure: false,			// enable secure cookie - requires https connection to transfer
+
+	tabClass:'tabs',				// class of the tabs
+	headerClass:'accordion_tabs',	// class of the header of accordion on smaller screens
+	contentClass:'tab_content',		// class of container
+	activeClass:'active',			// name of the class used for active tab
+
+	tabTransition: 'fade',			// transitions to use - normal or fade
+	tabIntime:500,					// time for animation IN (1000 = 1s)
+	tabOuttime:0,					// time for animation OUT (1000 = 1s)
+
+	accordionTransition: 'slide',	// transitions to use - normal or slide
+	accordionIntime:500,			// time for animation IN (1000 = 1s)
+	accordionOuttime:400,			// time for animation OUT (1000 = 1s)
+
+	before: function(){},			// function to call before tab is opened
+	after: function(){}				// function to call after tab is opened
+};
 })(jQuery, window, document);

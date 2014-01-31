@@ -1,85 +1,63 @@
 /*
- * jQueryTab v1.0
- * Copyright 2012 dharma
- * Free to use under the GPLv2 license.
- * http://www.gnu.org/licenses/gpl-2.0.html
- */
+* jQueryTab v1.4
+* Copyright Dharma Poudel (@rogercomred)
+* Free to use under the GPLv3 license.
+* http://www.gnu.org/licenses/gpl-3.0.html
+*/
 
 /* == quick_reset */
 *{
-	border:none;
-	margin:0;
-	padding:0;
-	outline:none;
+border:none;
+margin:0;
+padding:0;
+outline:none;
 }
 
 /*  == common styles */
 body {
-	background: #f6f6f6;
-	min-height:100%;
-	font: normal 13px/1.5 Arial,Helvetica, sans-serif;
+background: #f6f6f6;
+min-height:100%;
+font: normal 13px/1.5 Arial,Helvetica, sans-serif;
 }
 a:link, a:visited{ color: #000; text-decoration:none;}
 a:link{ color: #000; text-decoration:none;}
 a:hover{ color: #666; }
 ul,ol{ list-style:none outside none; }
 h1{
-	font-size: 25px;
-	color:#000;
-	padding-bottom:20px;
-	margin-bottom: 20px;
+font-size: 25px;
+color:#000;
+padding-bottom:20px;
+margin-bottom: 20px;
 }
 p{ margin: 10px 0 15px; }
 #container{
-	width:840px;
-	padding:40px 50px;
-	margin:0 auto;
+width:840px;
+padding:0px 50px;
+margin:0 auto;
 }
 
 /*  == tab heading */
-.tabs {
-    border: 1px solid #ccc;
-		overflow:hidden;
-}
+.tabs { border: 1px solid #ccc; overflow:hidden; }
 .tabs li{ float:left; }
-.tabs li a{
-		border-left: 1px solid #ccc;
-		color:#21759B;
-		display:block;
-		font-weight:bold;
-		padding: 15px 20px;
-}
+.tabs li a{ border-left: 1px solid #ccc; color:#21759B; display:block; font-weight:bold; padding: 15px 20px; }
 .tabs li:first-child a{ border-left: none; }
 .tabs li a:hover{ color:#D54E21; }
-li.active a{ color: #000; }
+.tabs .active a{ color: #000; }
 
 /* == accordion */
-.accordion_tabs {
-	display:none;
-	border-bottom: 1px solid #ccc;
-	padding: 10px;
-	font-weight:bold;
-}
-a.accordion_tabs:link,
-a.accordion_tabs:visited{
-	color: #21759B;
-}
+.accordion_tabs { display:none; border-bottom: 3px double #ccc; padding: 10px; font-weight:bold;}
+a.accordion_tabs:link, a.accordion_tabs:visited{ color: #21759B; }
 a.accordion_tabs:hover{ color:#D54E21; }
 a.accordion_tabs.active{ color: #000; }
 
 /*  == tab content  */
-.tab_content{
-	border:1px solid #ccc;
-	border-top: none;
-	display:none;
-	padding: 10px;
-}
+.tab_content{ border:1px solid #ccc;  border-top: none; padding: 10px; display:none;}
 
 /* Media Queries
 ***********************/
-@media screen and (max-width: 600px) {
-	#container{ width:90%; padding:40px 20px; }
+@media screen and (max-width: 800px) {
+    #container{ width:90%; padding:40px 20px; }
+    .accordion_tabs{ display:block; }
 	.tabs{ display:none; }
-	.accordion_tabs{ display:block; }
-	.tab_content{ border:none; }
+	.tab_content{ border:none;}
 }
