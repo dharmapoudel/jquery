@@ -41,6 +41,12 @@ var jQueryTab = {
           ? self.getCookie(self.opts.cookieName)                          //  set to  the value from cookie
           : self.opts.initialTab)                               //    else set to specified tab or default open tab
       : self.opts.initialTab;                                     // else set to initial tab
+    if (window.location.hash !== '') {
+      var indexOfHash = $(self.opts.tabClass + ' a').index($("[href=" + window.location.hash + "]"));
+      if (indexOfHash !== -1) {
+        self.currentTab = indexOfHash;
+      }
+    }
   },
   handleEvent: function(obj){
     var self = obj;
