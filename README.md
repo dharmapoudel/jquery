@@ -18,6 +18,7 @@ Automatically coverts the tabs into accordion interface in smaller devices like 
 Remembers last active tab using cookie.
 * tabs transitions: normal and fade.
 * accordion transitions: normal and slide.
+* respects url fragments on page load
 
 
 
