@@ -1,187 +1,282 @@
 /*
 Author: Dharma Poudel (@rogercomred)
-Description: A jquery tab plugin.
-Version: 1.4
+Description: Yet another jQuery tabs plugin with unlimited animations and transitions.
+Version: 2.0
 License:  GPLv3 ( http://www.gnu.org/licenses/gpl-3.0.html )
 */
 
 ;(function($, window, document, undefined){
-var jQueryTab = {
-	init:function(opts){
-		var self = this;							// cache this into self
-		self.opts = opts;
-		self.opts.initialTab -= 1;																	// subtract 1 from initialTab; count starts at 1 not 0
-		self.opts.tabClass = '.' + self.opts.tabClass;							// add '.' before tabClass
-		self.opts.contentClass = '.' + self.opts.contentClass;	// add '.' before contentClass
-		
-		self.getactivetab(); 																				// get the tab to open initially
-		$(self.opts.tabClass).find("li") .eq(self.currentTab).addClass(self.opts.activeClass);				//activate last active tab or specified tab or default tab
-		$(self.opts.contentClass).hide().eq(self.currentTab).fadeIn(self.opts.inanimationtime);			// show corresponding tab content
-		$(self.opts.tabClass) .on((self.opts.openOnhover)?'click.jqeryTab, mouseenter.jqeryTab' :'click.jqeryTab' , "a", function(){										// when tab is clicked
-			(typeof self.opts.before === 'function') ? self.opts.before.apply( this, arguments ) : '';		// call fxn before
-			self.handleEvent.call(this, self);															// call handleEvent fxn; self.opts - data values
-			(typeof self.opts.after === 'function') ? self.opts.after.apply( this, arguments ) : '';		// call fxn after
-			return false;																					// prevent default behaviour
-		});
-		if(self.opts.responsive){																			// if accordion is enabled
-			self.addHeader.call(this);																		// call fxn to add accordian headers dynamically
-			$('body').on((self.opts.openOnhover)? 'click.jqeryTab, hover.jqeryTab' :'click.jqeryTab', '.' + self.opts.headerClass, function(){						// when accordain header is clicked
-				(typeof self.opts.before === 'function') ? self.opts.before.apply( this, arguments ) : '';	// call fxn before
-				self.handleEventResponsive.call(this, self);											// call fxn to handle accordions
-				(typeof self.opts.after === 'function') ? self.opts.after.apply( this, arguments ) : '';	// call fxn after
-				return false;																				// prevent default behaviour
-			});
-		}
-	},
-	getactivetab: function(tab){
-		var self = this;																					// cache this into self
-		if(typeof tab ==='number'){  self.currentTab = tab-1;  return; }			// if tab specified set it to currentTab
-		self.currentTab =(self.opts.useCookie)																// if remember last active tab is set to true
-			? (self.getCookie(self.opts.cookieName)															// if $.cookie plugin is present & cookie is set
-					? self.getCookie(self.opts.cookieName)													// 	set to  the value from cookie
-					: self.opts.initialTab)																// 		else set to specified tab or default open tab
-			: self.opts.initialTab;																			// else set to initial tab
-	},
-	handleEvent: function(obj){
-		var self = obj;
-		if($(this).parent().hasClass(self.opts.activeClass)) return;												// do nothing when active tab is clicked
-		var $index = $(this).parent().index();																	// get the index of current tab
-		$(self.opts.tabClass).find("li").removeClass(self.opts.activeClass)											// remove active class from all tabs
-								.eq($index).addClass(self.opts.activeClass);										// add active class to this tab
-		(self.opts.responsive)																					// if accordion is enabled on smaller screens
-			? $('.'+self.opts.headerClass).removeClass(self.opts.activeClass)											// remove class from all accordain headers
-				.eq($index).addClass(self.opts.activeClass) : '';												// add class to corresponding accordian header
-		(self.opts.tabTransition ==='fade')															// if transition is fade
-			? $(self.opts.contentClass).fadeOut(self.opts.tabOuttime)									// 		fade out the visible content in specified time
-				.eq($index).fadeIn(self.opts.tabIntime)												//		fade in the corresponding tab content 
-			: $(self.opts.contentClass).hide(self.opts.tabOuttime)										// else hide the visible content in specified time
-								.eq($index).show(self.opts.tabIntime);								// 		show the corresponding tab content
-		(self.opts.useCookie) ? self.setCookie.call(self, $index) : '';										//if useCookie is true save the current tab index to cookie
-	},
-	handleEventResponsive: function(obj){
-		var self = obj;
-		$index = Math.floor(($(this).next().index() -1)/2 );											// get the index of current accordion
-		if(($(this).hasClass(self.opts.activeClass)) && !self.opts.collapsible) return;								// if active and not collapsible - do nothing
-		else if(($(this).hasClass(self.opts.activeClass)) && self.opts.collapsible){									// if active and collapsible
-			$('.'+self.opts.headerClass).removeClass(self.opts.activeClass);											// 		remove active class from all accordian headers
-			$(self.opts.tabClass).find("li").removeClass(self.opts.activeClass);										// 		remove active class from all tabs
-			(self.opts.accordionTransition ==='slide')												// if animation is slide
-				? $(self.opts.contentClass +':visible').slideUp(self.opts.accordionOuttime)				// 		slide up the visible content in specified time
-				: $(self.opts.contentClass +':visible').hide(self.opts.accordionOuttime);				// else hide the visible content in specified time 
-			(self.opts.useCookie) ? self.setCookie.call(self, null) : '';										// 		delete the cookie
-		}else{
-			$('.'+self.opts.headerClass) .addClass(self.opts.activeClass)												// add active class to all accordian headers
-							.not($(this)).removeClass(self.opts.activeClass);									// remove active class from all headers except this
-			$(self.opts.tabClass).find("li").removeClass(self.opts.activeClass)										// remove active class from other tabs
-									.eq($index).addClass(self.opts.activeClass);									// add active class to the corresponding tab
-			(self.opts.accordionTransition ==='slide')												// if the transition is slide
-				? $(self.opts.contentClass).slideUp(self.opts.accordionOuttime)							// 		slide up the visible content
-										.eq($index).slideDown(self.opts.accordionIntime)				// 		slide down corresponding tab content
-				: $(self.opts.contentClass).hide(self.opts.accordionOuttime)								// else hide the visible content in specified time
-										.eq($index).show(self.opts.accordionIntime);					// 		show the corresponding tab content
-			(self.opts.useCookie) ? self.setCookie.call(self, $index) : '';										// if useCookie is true	save the current tab index to cookie	
-		}								
-	},
-	addHeader: function(){
-		var self = this;																					// cache current object into self
-		$('.'+self.opts.headerClass).remove();																// remove all existing headers
-		$(self.opts.tabClass).find("a").each(function(){													// iterate for each  tabs
-			var $tab_content = $(self.opts.contentClass).eq($(this).parent().index());						// get corresponding tab content
-			$('<a />').attr({																				// create a element with jquery
-							'class': ($(this).parent().hasClass('active'))									// if this tab is active
-										? self.opts.headerClass + ' active'									// add active class along with headerClass 
-											: self.opts.headerClass,										// else add only headerClass
-							'href' : '#'+$tab_content.attr('id')											// set href attribute of header - works as named anchor
-							})
-					.text($(this).text())																	// add text to the accordian header
-					.insertBefore($tab_content);															// insert just before tab content
-		});
-	},
-	setCookie: function(value){
-		var self = this, expires, date, path, domain, secure;
-		if (value === null) {
-			value = '';
-			date = new Date();
-			date.setTime(date.getTime() + ((-1)*24*60*60*1000));
-		}
-		else if(typeof self.opts.cookieExpires == 'number'){
-			date = new Date();
-			date.setTime(date.getTime() + (self.opts.cookieExpires*24*60*60*1000));
-		} else if( self.opts.cookieExpires.toUTCString){
-			date = self.opts.cookieExpires;
-		}
-		expires = '; expires=' + date.toUTCString(); 
-		path = self.opts.cookiePath ? '; path=' + (self.opts.cookiePath) : '';
-		domain = self.opts.cookieDomain ? '; domain=' + (self.opts.cookieDomain) : '';
-		secure = self.opts.cookieSecure ? '; secure' : '';
-		document.cookie = ''.concat(self.opts.cookieName, '=', encodeURIComponent(value), expires, path, domain, secure);
-	},
-	getCookie: function(name){
-		var name = name + "=";
-		if (document.cookie && document.cookie != '') {
-			var cookieArray = document.cookie.split(";");
-			for(var i=0; i < cookieArray.length; i++){
-				var cookie = jQuery.trim(cookieArray[i]);
-		if(cookie.indexOf(name)==0) 
-					return decodeURIComponent(cookie.substring(name.length, cookie.length));
-			}
-		}
-		return null;
-	},
-	isvisible: function(elem){
-		return !elem.is(':hidden');																			// return true if element is visible
-	},
-	openTab: function(tab){
-		var self = this,																					// cache current object into self
-				elem = $(self.opts.tabClass).find('a').eq(tab-1),												// get a reference to the tab
-				relem = $('.'+self.opts.headerClass).eq(tab-1);													// get a reference to the accordion
-		self.getactivetab(tab);																				// get the active tab value
-		if(self.isvisible(elem)){																			// if tab is visible
-			(typeof self.opts.before === 'function') ? self.opts.before.apply( elem, arguments ) : '';		// call fxn before 
-				self.handleEvent.call(elem, self);														// call fxn to handle tabs
-			(typeof self.opts.after === 'function') ? self.opts.after.apply( elem, arguments ) : '';		// call fxn before
-		}else if(self.isvisible(relem) && self.opts.responsive){																		
-			(typeof self.opts.before === 'function') ? self.opts.before.apply( relem, arguments ) : '';		// call fxn before 
-				self.handleEventResponsive.call(relem, self);											// else call fxn to handle accordions
-			(typeof self.opts.after === 'function') ? self.opts.after.apply( relem, arguments ) : '';
-		}
-	}
-};
+'use strict';
 
-$.jQueryTab = 	function(opts){
-	var JT = Object.create(jQueryTab);			// create instance of jQueryTab object
-	var opts = $.extend (true, {}, $.jQueryTab.defaults, opts );	// merge two objects into an empty objects, preserving both
-	JT.init(opts);								// call the init fxn
-	$(opts.tabClass).data('jQueryTab', JT);	// Store a reference to the jQueryTab object
-};
+  function jQueryTab(wrapper, options) {
+    this.options = $.extend (true, {}, $.fn.jQueryTab.defaults, options );
+    this._defaults = $.fn.jQueryTab.defaults;
+    this.wrapper = wrapper;
+    this.$wrapper = $(wrapper);
+    this.tabs = this.$wrapper.find('.'+this.options.tabClass);
+    this.tabItems = this.tabs.find('li');
+    this.tabLinks = this.tabItems.find("a");
+    this.wrap = this.$wrapper.find('.'+this.options.contentWrapperClass);
+    this.contents = this.wrap.find('.'+this.options.contentClass);
+    this.headerClass = this.options.accordionClass;
+    this.activeClass = this.options.activeClass;
+    this.init();
+  }
 
-$.jQueryTab.defaults = {
-	responsive:true,				// enable accordian on smaller screens
-	collapsible:false,				// allow all tabs to collapse on accordians
-	useCookie: true,				// remember last active tab using cookie
-	openOnhover: false,				// open tab on hover
-	initialTab: 1,					// tab to open initially; start count at 1 not 0
+  /* jQueryTab object */
+  jQueryTab.prototype = {
+  
+      init:function(){
+        var self = this,
+            initialTab = self.getActiveTab();   		// get the tab to open initially
 
-	cookieName: 'active-tab',		// name of the cookie set to remember last active tab
-	cookieExpires: 365,				// when it expires in days or standard UTC time
-	cookiePath: '',					// path on which cookie is accessible
-	cookieDomain:'',				// domain of the cookie
-	cookieSecure: false,			// enable secure cookie - requires https connection to transfer
+        if(self.options.responsive){
+          self.addHeader();                 // call fxn to add accordian headers
+          self.alinks = self.wrap.find('.'+self.headerClass);
+        }
+        
+        self.resize();
+        self.cssSetUp();
+        self.handleEvent();
+      },
+      
+      addHeader: function(){
+        var self = this;
+            
+        self.wrap.find('.'+self.headerClass).remove();
+        self.tabLinks.each(function(){
+          var $tab_content = self.contents.eq($(this).parent().index());
+          $('<a />').attr({ 'class': self.headerClass, 'href' : '#'+$tab_content.attr('id') })
+                    .text($(this).text())
+                    .insertBefore($tab_content);
+        });
+      },
+      
+      cssSetUp: function(){
+        this.wrap.addClass('toggle_border');
+        this.contents.addClass('toggle_position toggle_display');
+        if(this.options.responsive) {
+          this.tabs.addClass('toggle_display');
+          
+        }
+      },
+      
+      handleClasses: function(activeContent){
+        var self = this;
+        self.contents.removeClass(self.options.tabInTransition).addClass(self.options.tabOutTransition);  
+        activeContent.removeClass(self.options.tabOutTransition).addClass(self.options.tabInTransition);
+      },
+      
+      resize: function(){
+        var self = this,
+            currentTab    =  self.getActiveTab(),
+            activeContent = self.contents.eq(currentTab);
+            self.reOrder(activeContent);
+            
+        self.tabItems.eq(currentTab).addClass(self.activeClass);
+        if(self.options.responsive) self.alinks.eq(currentTab).addClass(self.activeClass);
 
-	tabClass:'tabs',				// class of the tabs
-	headerClass:'accordion_tabs',	// class of the header of accordion on smaller screens
-	contentClass:'tab_content',		// class of container
-	activeClass:'active',			// name of the class used for active tab
+        if (self.options.responsiveBelow < $(window).width()) {
+            self.contents.show();
+            self.handleClasses(activeContent);
+            self.wrap.height(activeContent.outerHeight());
+        }else{
+          if(self.options.responsive){
+              self.contents.hide().removeClass(self.options.tabOutTransition, self.options.tabInTransition);
+              activeContent.fadeIn(self.options.accordionIntime);
+            }
+        }
+        
+        (self.options.useCookie) ? self.setCookie.call(self, currentTab) : '';
+      },
+      
+      handleEvent: function(){
+         var self = this;
+        $(window).on('resize', function(){ self.resize(); } );
+        
+        self.tabLinks.on((self.options.openOnhover)?'click, mouseenter' :'click' , function(event){										// when tab is clicked
+        event.preventDefault();																			// prevent default behaviour	
+        (typeof self.options.before === 'function') ? self.options.before.apply( this, arguments ) : '';		// call fxn before
+        self.handleTabs.call(this, self);															// call handleEvent fxn; self.options - data values
+        (typeof self.options.after === 'function') ? self.options.after.apply( this, arguments ) : '';		// call fxn after
+        });
 
-	tabTransition: 'fade',			// transitions to use - normal or fade
-	tabIntime:500,					// time for animation IN (1000 = 1s)
-	tabOuttime:0,					// time for animation OUT (1000 = 1s)
+        if(self.options.responsive){																		// if accordion is enabled
+        self.alinks.on('click', function(event){						// when accordain header is clicked
+        event.preventDefault();									                            // prevent default behaviour
+        (typeof self.options.before === 'function') ? self.options.before.apply( this, arguments ) : '';	// call fxn before
+        self.handleAccordions.call(this, self); 									// call fxn to handle accordions
+        (typeof self.options.after === 'function') ? self.options.after.apply( this, arguments ) : '';	// call fxn after
+        });
+        }
+      },
+      
+      handleTabs: function(self){
+        if($(this).parent().hasClass(self.activeClass)) return;												// do nothing when active tab is clicked
+        
+        var index = $(this).parent().index(),
+            activeContent  = self.contents.eq(index);
+        
+                
+        self.tabItems.removeClass(self.activeClass).eq(index).addClass(self.activeClass);										// add active class to this tab
+        self.wrap.height(activeContent.outerHeight());
+        self.reOrder(activeContent);
+        if(self.options.responsive)
+          self.alinks.removeClass(self.activeClass).eq(index).addClass(self.activeClass);												// add class to corresponding accordian header
+        
+        self.handleClasses(activeContent);
+            
+        (self.options.useCookie) ? self.setCookie.call(self, index) : '';										//if useCookie is true save the current tab index to cookie
+      },
+      
+      handleAccordions: function(self){
+        var $this           = $(this),
+            index           = Math.floor(($this.next().index() -1)/2 ),
+            intime          = self.options.accordionInTime,
+            outtime         = self.options.accordionOutTime;
+                
+        if(($this.hasClass(self.activeClass)) && !self.options.collapsible) return;								// if active and not collapsible - do nothing
+        
+        else if( $this.hasClass(self.activeClass) && self.options.collapsible ){									// if active and collapsible
+          self.alinks.removeClass(self.activeClass);											// 		remove active class from all accordian headers
+          self.tabItems.removeClass(self.activeClass);										// 		remove active class from all tabs
+          (self.options.accordionTransition ==='slide')	? self.contents.slideUp(outtime) : self.contents.fadeOut(outtime);				// else hide the visible content in specified time 
+          
+          (self.options.useCookie) ? self.setCookie.call(self, null) : '';										// 		delete the cookie
+        }else{
+          self.alinks.removeClass(self.activeClass).eq(index).addClass(self.activeClass);
+          self.tabItems.removeClass(self.activeClass).eq(index).addClass(self.activeClass);									// add active class to the corresponding tab
+          
+          (self.options.accordionTransition ==='slide')												// if the transition is slide
+            ? self.contents.slideUp(outtime).eq(index).slideDown(intime)				// 		slide down corresponding tab content
+            : self.contents.fadeOut(outtime).eq(index).fadeIn(intime);					// 		show the corresponding tab content
+          
+          (self.options.useCookie) ? self.setCookie.call(self, index) : '';										// if useCookie is true	save the current tab index to cookie	
+        }								
+      },
+      
+      reOrder: function($ontop){
+        var self = this,
+            count = self.contents.length;
+        $ontop.css('zIndex', count+1);
+        self.contents.not($ontop).each(function(i){
+            $(this).css('zIndex', count-i);
+        });
+      },
+      
+      getActiveTab: function(tab){
+        var self = this, currentTab;
+        
+        if(typeof tab ==='number'){  return tab-1; }	// if tab specified return it immediately
 
-	accordionTransition: 'slide',	// transitions to use - normal or slide
-	accordionIntime:500,			// time for animation IN (1000 = 1s)
-	accordionOuttime:400,			// time for animation OUT (1000 = 1s)
+        if(self.tabs.find('.'+self.activeClass).index() !==-1){
+          return self.tabs.find('.'+self.activeClass).index();
+        }
+        
+        currentTab =(self.options.useCookie)										// if remember last active tab is set to true
+            ? (self.getCookie(self.options.cookieName)						// if $.cookie plugin is present & cookie is set
+                ? self.getCookie(self.options.cookieName)				// 	set to  the value from cookie
+                : self.options.initialTab-1                       // else set to specified tab or default open tab
+                )																
+            : self.options.initialTab-1;	
 
-	before: function(){},			// function to call before tab is opened
-	after: function(){}				// function to call after tab is opened
-};
-})(jQuery, window, document);
+        if(window.location.hash) {
+          var indexOfHash = self.tabLinks.index($('[href='+window.location.hash+']'));
+          if(indexOfHash !== -1) currentTab = indexOfHash;
+        }
+        return currentTab;
+      },
+      
+      setCookie: function(value){
+        var self = this, expires, date, path, domain, secure;
+        if (value === null) {
+          value = '';
+          date = new Date();
+          date.setTime(date.getTime() + ((-1)*24*60*60*1000));
+        }
+        else if(typeof self.options.cookieExpires == 'number'){
+          date = new Date();
+          date.setTime(date.getTime() + (self.options.cookieExpires*24*60*60*1000));
+        } else if( self.options.cookieExpires.toUTCString){
+          date = self.options.cookieExpires;
+        }
+        expires = '; expires=' + date.toUTCString(); 
+        path = self.options.cookiePath ? '; path=' + (self.options.cookiePath) : '';
+        domain = self.options.cookieDomain ? '; domain=' + (self.options.cookieDomain) : '';
+        secure = self.options.cookieSecure ? '; secure' : '';
+        document.cookie = ''.concat(self.options.cookieName, '=', encodeURIComponent(value), expires, path, domain, secure);
+      },
+      
+      getCookie: function(name){
+        var name = name + "=";
+        if (document.cookie && document.cookie != '') {
+          var cookieArray = document.cookie.split(";");
+          for(var i=0; i < cookieArray.length; i++){
+            var cookie = jQuery.trim(cookieArray[i]);
+            if(cookie.indexOf(name)==0) 
+            return decodeURIComponent(cookie.substring(name.length, cookie.length));
+          }
+        }
+        return null;
+      },
+  };
+  /* initialize the jQueryTab plugin */
+  $.fn.jQueryTab = function(options) {
+    return this.each(function() {
+      var container = $(this);
+      if(container.data('jQueryTab')) return;
+      var aT = new  jQueryTab(this, options);
+      container.data('jQueryTab', aT);
+    });
+  };
+
+  /* jQueryTab defaults */
+  $.fn.jQueryTab.defaults = {
+    
+    //classes settings
+    tabClass:'tabs',				    // class of the tabs
+    accordionClass:'accordion_tabs',	        // class of the header of accordion on smaller screens
+    contentWrapperClass:'tab_content_wrapper',		// class of content wrapper
+    contentClass:'tab_content',		// class of container
+    activeClass:'active',			// name of the class used for active tab
+
+    //feature settings
+    responsive:true,				// enable accordian on smaller screens
+    responsiveBelow:600,            // the breakpoint
+    collapsible:true,				// allow all tabs to collapse on accordians
+    useCookie: true,				// remember last active tab using cookie
+    openOnhover: false,			    // open tab on hover
+    initialTab: 1,					// tab to open initially; start count at 1 not 0
+
+    //cookie settings
+    cookieName: 'active-tab',		// name of the cookie set to remember last active tab
+    cookieExpires: 365,				// when it expires in days or standard UTC time
+    cookiePath: '',					// path on which cookie is accessible
+    cookieDomain:'',				// domain of the cookie
+    cookieSecure: false,			// enable secure cookie - requires https connection to transfer
+    
+    //tabs transition settings      fade|flip|scaleUp|slideLeft
+    tabInTransition: 'fadeIn',      // classname for showing in the tab content
+    tabOutTransition: 'fadeOut',    // classname for hiding the tab content
+    
+    //accordion transition settings
+    accordionTransition: 'slide',	// transitions to use - normal or slide
+    accordionIntime:500,			// time for animation IN (1000 = 1s)
+    accordionOutTime:400,			// time for animation OUT (1000 = 1s)
+    
+    //api functions
+    before: function(){},			// function to call before tab is opened
+    after: function(){}				// function to call after tab is opened
+  };
+
+})(jQuery, window, document); 
+
+
+/* to dos */
+/* 
+1. fix bug when collapsible is true and resized
+3. look into opentab function 
+
+jQueryTab is back with unlimited  css3 transitions. Try out the few transitions already crafted for you. 
+Want more,  make your own and go crazy!
+*/

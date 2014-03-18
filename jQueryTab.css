@@ -1,40 +1,25 @@
 /*
-* jQueryTab v1.4
+* jQueryTab v2.0
 * Copyright Dharma Poudel (@rogercomred)
 * Free to use under the GPLv3 license.
 * http://www.gnu.org/licenses/gpl-3.0.html
 */
 
 /* == quick_reset */
-*{
-border:none;
-margin:0;
-padding:0;
-outline:none;
-}
+*{ border:none; margin:0; padding:0; outline:none;}
 
 /*  == common styles */
-body {
-background: #f6f6f6;
-min-height:100%;
-font: normal 13px/1.5 Arial,Helvetica, sans-serif;
-}
+body {background: #f6f6f6; min-height:100%; font: normal 13px/1.5 Arial,Helvetica, sans-serif; margin-bottom:30px;}
+ul,ol{ list-style:none outside none;}
+h1{font-size: 25px; color:#000; padding-bottom:20px; margin-bottom: 20px;}
+h3{margin:30px 0 10px;}
+p{margin: 0 0 20px;}
+pre{ border: 1px solid #ddd; box-shadow: 1px 1px 0 #fff, 2px 2px 0 #ddd; margin:10px 0; padding: 10px; background: #fcfcfc; }
+
+#container{ width:840px; padding:0px 50px; margin:0 auto;}
+
 a:link, a:visited{ color: #000; text-decoration:none;}
-a:link{ color: #000; text-decoration:none;}
-a:hover{ color: #666; }
-ul,ol{ list-style:none outside none; }
-h1{
-font-size: 25px;
-color:#000;
-padding-bottom:20px;
-margin-bottom: 20px;
-}
-p{ margin: 10px 0 15px; }
-#container{
-width:840px;
-padding:0px 50px;
-margin:0 auto;
-}
+a:hover{ color: #666;}
 
 /*  == tab heading */
 .tabs { border: 1px solid #ccc; overflow:hidden; }
@@ -45,19 +30,26 @@ margin:0 auto;
 .tabs .active a{ color: #000; }
 
 /* == accordion */
-.accordion_tabs { display:none; border-bottom: 3px double #ccc; padding: 10px; font-weight:bold;}
+.accordion_tabs { display:none; border-bottom: 3px double #ccc; padding: 10px 0; font-weight:bold;}
 a.accordion_tabs:link, a.accordion_tabs:visited{ color: #21759B; }
 a.accordion_tabs:hover{ color:#D54E21; }
 a.accordion_tabs.active{ color: #000; }
 
 /*  == tab content  */
-.tab_content{ border:1px solid #ccc;  border-top: none; padding: 10px; display:none;}
+.tab_content_wrapper{ overflow:hidden;  position:relative; transition: all .3s ease-in-out .3s; }
+.tab_content{ transition: all .6s ease-in-out; padding:15px; background:#f6f6f6;}
+.toggle_display{display:block;}
+.toggle_position{ position:absolute; }
+.toggle_border{ border:1px solid #ccc; border-top: none; }
 
 /* Media Queries
 ***********************/
-@media screen and (max-width: 800px) {
-    #container{ width:90%; padding:40px 20px; }
-    .accordion_tabs{ display:block; }
-	.tabs{ display:none; }
-	.tab_content{ border:none;}
+@media screen and (max-width: 700px) {
+  #container{ width:90%; padding:40px 20px; }
+  .accordion_tabs{ display:block; }
+  .tab_content_wrapper{ height:auto !important;}
+  .tab_content{ transition:none; padding:15px 0;}
+  .toggle_display{display:none;}
+  .toggle_position{ position:relative; }
+  .toggle_border{ border:none; }
 }

@@ -2,89 +2,335 @@
 <html lang="en">
 <head>
 <meta content="charset=utf-8">
-<title>jQueryTab Plugin Example</title>
+<title>jQueryTab Plugin Demos</title>
 <link rel="stylesheet" href="jQueryTab.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="animation.css" type="text/css" media="screen" />
 </head>
 <body>
 <div id="container" style="margin-top:50px;">
-<h1>jQueryTab Plugin Example</h1>
+<h1>jQueryTab v2 Plugin Demo</h1>
 
-<div class="jquerytab_wrapper">
+<h3>Demo 1 :</h3>
+<pre>
+responsive: yes
+collapsible: yes
+usecookie: yes
+event: click 
+transition: scaleUp 
+callback functions: none
+initialtab: 2 
+</pre>
+<div class="tabs-1">
 	<ul class="tabs">
 		<li><a href="#tab1">General</a></li>
 		<li><a href="#tab2">Social Media</a></li>
-		<li><a href="#tab3">Copyright</a></li>
+		<li><a href="#tab-copyright">Copyright</a></li>
 		<li><a href="#tab4">Contact</a></li>
 	</ul>
-	<section class="tab_content" id="tab1">
-		<p>Legebantur calidis mundum caligine coeperunt. Descenderat regat prima dissaepserat humanas tonitrua orbem bracchia. Principio galeae sole. Margine postquam evolvit eodem auroram uno omni ille secrevit regat.Coeptis undae traxit certis secrevit campoque liquidum margine gravitate. Animus convexi origine terrae cesserunt. Tumescere natus proximus lacusque. Otia faecis tonitrua erat hominum aliis radiis moles.</p>
-		<p>Dei conversa egens spectent tum sed diremit haec. Dei cinxit zephyro media congeriem septemque rudis. Terrae nubes utramque opifex diu magni reparabat meis nam. Turba habendum. Onus animal est pondere. Foret dedit obsistitur. Tenent homo caligine humanas sanctius dicere sive addidit. Ignea sibi. Aberant mundi iners dispositam altae orbis fronde iunctarum nubibus.</p>
-	</section>
-	<section class="tab_content" id="tab2">
-		<p>Dei conversa egens spectent tum sed diremit haec. Dei cinxit zephyro media congeriem septemque rudis. Terrae nubes utramque opifex diu magni reparabat meis nam. Turba habendum. Onus animal est pondere. Foret dedit obsistitur. Tenent homo caligine humanas sanctius dicere sive addidit. Ignea sibi. Aberant mundi iners dispositam altae orbis fronde iunctarum nubibus. Ante parte. Quisquis tractu diu. Iudicis dominari frigida origo surgere fabricator. Piscibus figuras speciem evolvit ulla obstabatque cuncta. Omni grandia terrenae pugnabant pondus quisque orbis ultima.</p>
-		<p>Legebantur calidis mundum caligine coeperunt. Descenderat regat prima dissaepserat humanas tonitrua orbem bracchia. Principio galeae sole. Margine postquam evolvit eodem auroram uno omni ille secrevit regat.Coeptis undae traxit certis secrevit campoque liquidum margine gravitate. Animus convexi origine terrae cesserunt. Tumescere natus proximus lacusque. Otia faecis tonitrua erat hominum aliis radiis moles.</p>
-	</section>
-	<section class="tab_content" id="tab3">
-		<p>Astra eurus supplex undae fulgura congestaque locis. Gravitate ante nabataeaque sua naturae satus ad. Madescit pugnabant effervescere abscidit altae. Parte norant principio vultus reparabat omni rapidisque.</p>
-		<p>Primaque flamma erectos tempora sorbentur illas foret ambitae. Sata locavit triones. Terrarum tuti diversa formas diffundi prima quod regio premuntur. Ipsa pluviaque toto valles conversa quinta.</p>
-	</section>
-	<section class="tab_content" id="tab4">
-		<p>In erat pugnabant diffundi pondere temperiemque. Sole liquidas emicuit mundo pro secant. Aer nuper habentem tum in. Secant origine inposuit diverso zonae nubes nulli mundum sectamque.</p>
-		<p>Super animalibus circumfluus ignea fert. Undas instabilis coercuit porrexerat. Uno legebantur plagae coeptis. Tanta opifex margine locis omnia obsistitur dispositam sublime erant. Fixo ubi mutatas tuba.</p>
-	</section>
+	<section class="tab_content_wrapper">
+        <article class="tab_content" id="tab1">
+            <p>General calidis mundum caligine coeperunt. Descenderat regat prima dissaepserat humanas tonitrua orbem bracchia. Principio galeae sole. Margine postquam evolvit eodem auroram uno omni ille secrevit regat.<a href="#tab3">General</a> coeptis undae traxit certis secrevit campoque liquidum margine gravitate. Animus convexi origine terrae cesserunt. Tumescere natus proximus lacusque. Otia faecis tonitrua erat hominum aliis radiis moles.</p>
+            <p>General conversa egens spectent tum sed diremit haec. Dei cinxit zephyro media congeriem septemque rudis. Terrae nubes utramque opifex diu magni reparabat meis nam. Turba habendum. Onus animal est pondere. Foret dedit obsistitur. Tenent homo caligine humanas sanctius dicere sive addidit. Ignea sibi. Aberant mundi iners dispositam altae orbis fronde iunctarum nubibus.</p>
+        </article>
+        <article class="tab_content" id="tab2">
+            <p>Social Media conversa egens spectent tum sed diremit haec. Dei cinxit zephyro media congeriem septemque rudis. Terrae nubes utramque opifex diu magni reparabat meis nam. Turba habendum. Onus animal est pondere. Foret dedit obsistitur. Tenent homo caligine humanas sanctius dicere sive addidit. Ignea sibi. Aberant mundi iners dispositam altae orbis fronde iunctarum nubibus. Ante parte. Quisquis tractu diu. Iudicis dominari frigida origo surgere fabricator. <a href="#tab4">Social media</a>  piscibus figuras speciem evolvit ulla obstabatque cuncta. Omni grandia terrenae pugnabant pondus quisque orbis ultima.</p>
+            <p>Social Media calidis mundum caligine coeperunt. Descenderat regat prima dissaepserat humanas tonitrua orbem bracchia. Principio galeae sole. Margine postquam evolvit eodem auroram uno omni ille secrevit regat.Coeptis undae traxit certis secrevit campoque liquidum margine gravitate. Animus convexi origine terrae cesserunt. Tumescere natus proximus lacusque. Otia faecis tonitrua erat hominum aliis radiis moles.</p>
+            <p>Social Media calidis mundum caligine coeperunt. Descenderat regat prima dissaepserat humanas tonitrua orbem bracchia. Principio galeae sole. Margine postquam evolvit eodem auroram uno omni ille secrevit regat.Coeptis undae traxit certis secrevit campoque liquidum margine gravitate. Animus convexi origine terrae cesserunt. Tumescere natus proximus lacusque. Otia faecis tonitrua erat hominum aliis radiis moles.</p>
+        </article>
+        <article class="tab_content" id="tab-copyright">
+            <p>Copyright eurus supplex undae fulgura congestaque locis. Gravitate ante nabataeaque sua naturae satus ad. <a href="#tab2">Copyright</a> madescit pugnabant effervescere abscidit altae. Parte norant principio vultus reparabat omni rapidisque.</p>
+            <p>Copyright flamma erectos tempora sorbentur illas foret ambitae. Sata locavit triones. Terrarum tuti diversa formas diffundi prima quod regio premuntur. Ipsa pluviaque toto valles conversa quinta.</p>
+        </article>
+        <article class="tab_content" id="tab4">
+            <p>Contact erat pugnabant diffundi pondere temperiemque. Sole liquidas emicuit mundo pro secant. <a href="#tab1">Contact</a> aer nuper habentem tum in. Secant origine inposuit diverso zonae nubes nulli mundum sectamque.</p>
+            <p>Contact animalibus circumfluus ignea fert. Undas instabilis coercuit porrexerat. Uno legebantur plagae coeptis. Tanta opifex margine locis omnia obsistitur dispositam sublime erant. Fixo ubi mutatas tuba.</p>
+        </article>
+    </section>
 </div>
-	
-<div style="padding:10px;"> 
-<a class="opentab1" href="#tab2">Open tab directly</a> 
-<a class="opentab2" target="_blank" href="#tab2">Open tab through url</a> 
-<a class="addmoretabs" href="#"> add more tabs</a> 
+<h3>Demo 2 :</h3>
+<pre>
+responsive: yes
+collapsible: yes
+usecookie: yes
+event: hover 
+transition: flip 
+callback functions: none
+initialtab: 3 
+</pre>
+<div class="tabs-2">
+	<ul class="tabs">
+		<li><a href="#tab5">General</a></li>
+		<li><a href="#tab6">Social Media</a></li>
+		<li><a href="#tab7">Copyright</a></li>
+		<li><a href="#tab8">Contact</a></li>
+	</ul>
+	<section class="tab_content_wrapper">
+        <article class="tab_content" id="tab5">
+            <p>General calidis mundum caligine coeperunt. Descenderat regat prima dissaepserat humanas tonitrua orbem bracchia. Principio galeae sole. Margine postquam evolvit eodem auroram uno omni ille secrevit regat.<a href="#tab3">General</a> coeptis undae traxit certis secrevit campoque liquidum margine gravitate. Animus convexi origine terrae cesserunt. Tumescere natus proximus lacusque. Otia faecis tonitrua erat hominum aliis radiis moles.</p>
+            <p>General conversa egens spectent tum sed diremit haec. Dei cinxit zephyro media congeriem septemque rudis. Terrae nubes utramque opifex diu magni reparabat meis nam. Turba habendum. Onus animal est pondere. Foret dedit obsistitur. Tenent homo caligine humanas sanctius dicere sive addidit. Ignea sibi. Aberant mundi iners dispositam altae orbis fronde iunctarum nubibus.</p>
+        </article>
+        <article class="tab_content" id="tab6">
+            <p>Social Media conversa egens spectent tum sed diremit haec. Dei cinxit zephyro media congeriem septemque rudis. Terrae nubes utramque opifex diu magni reparabat meis nam. Turba habendum. Onus animal est pondere. Foret dedit obsistitur. Tenent homo caligine humanas sanctius dicere sive addidit. Ignea sibi. Aberant mundi iners dispositam altae orbis fronde iunctarum nubibus. Ante parte. Quisquis tractu diu. Iudicis dominari frigida origo surgere fabricator. <a href="#tab4">Social media</a>  piscibus figuras speciem evolvit ulla obstabatque cuncta. Omni grandia terrenae pugnabant pondus quisque orbis ultima.</p>
+            <p>Social Media calidis mundum caligine coeperunt. Descenderat regat prima dissaepserat humanas tonitrua orbem bracchia. Principio galeae sole. Margine postquam evolvit eodem auroram uno omni ille secrevit regat.Coeptis undae traxit certis secrevit campoque liquidum margine gravitate. Animus convexi origine terrae cesserunt. Tumescere natus proximus lacusque. Otia faecis tonitrua erat hominum aliis radiis moles.</p>
+            <p>Social Media calidis mundum caligine coeperunt. Descenderat regat prima dissaepserat humanas tonitrua orbem bracchia. Principio galeae sole. Margine postquam evolvit eodem auroram uno omni ille secrevit regat.Coeptis undae traxit certis secrevit campoque liquidum margine gravitate. Animus convexi origine terrae cesserunt. Tumescere natus proximus lacusque. Otia faecis tonitrua erat hominum aliis radiis moles.</p>
+        </article>
+        <article class="tab_content" id="tab7">
+            <p>Copyright eurus supplex undae fulgura congestaque locis. Gravitate ante nabataeaque sua naturae satus ad. <a href="#tab2">Copyright</a> madescit pugnabant effervescere abscidit altae. Parte norant principio vultus reparabat omni rapidisque.</p>
+            <p>Copyright flamma erectos tempora sorbentur illas foret ambitae. Sata locavit triones. Terrarum tuti diversa formas diffundi prima quod regio premuntur. Ipsa pluviaque toto valles conversa quinta.</p>
+        </article>
+        <article class="tab_content" id="tab8">
+            <p>Contact erat pugnabant diffundi pondere temperiemque. Sole liquidas emicuit mundo pro secant. <a href="#tab1">Contact</a> aer nuper habentem tum in. Secant origine inposuit diverso zonae nubes nulli mundum sectamque.</p>
+            <p>Contact animalibus circumfluus ignea fert. Undas instabilis coercuit porrexerat. Uno legebantur plagae coeptis. Tanta opifex margine locis omnia obsistitur dispositam sublime erant. Fixo ubi mutatas tuba.</p>
+        </article>
+    </section>
 </div>
+<h3>Demo 3 (rotate):</h3>
+<pre>
+responsive: no
+collapsible: no ( depends on responsive )
+usecookie: no
+event: click 
+transition: rotate 
+callback functions: before and after
+initialtab: 1
+</pre>
+<div class="tabs-3">
+	<ul class="tabs ">
+		<li><a href="#tab9">General</a></li>
+		<li><a href="#tab10">Social Media</a></li>
+		<li><a href="#tab11">Copyright</a></li>
+		<li><a href="#tab12">Contact</a></li>
+	</ul>
+	<section class="tab_content_wrapper">
+        <article class="tab_content" id="tab9">
+            <p>General calidis mundum caligine coeperunt. Descenderat regat prima dissaepserat humanas tonitrua orbem bracchia. Principio galeae sole. Margine postquam evolvit eodem auroram uno omni ille secrevit regat.<a href="#tab3">General</a> coeptis undae traxit certis secrevit campoque liquidum margine gravitate. Animus convexi origine terrae cesserunt. Tumescere natus proximus lacusque. Otia faecis tonitrua erat hominum aliis radiis moles.</p>
+            <p>General conversa egens spectent tum sed diremit haec. Dei cinxit zephyro media congeriem septemque rudis. Terrae nubes utramque opifex diu magni reparabat meis nam. Turba habendum. Onus animal est pondere. Foret dedit obsistitur. Tenent homo caligine humanas sanctius dicere sive addidit. Ignea sibi. Aberant mundi iners dispositam altae orbis fronde iunctarum nubibus.</p>
+        </article>
+        <article class="tab_content" id="tab10">
+            <p>Social Media conversa egens spectent tum sed diremit haec. Dei cinxit zephyro media congeriem septemque rudis. Terrae nubes utramque opifex diu magni reparabat meis nam. Turba habendum. Onus animal est pondere. Foret dedit obsistitur. Tenent homo caligine humanas sanctius dicere sive addidit. Ignea sibi. Aberant mundi iners dispositam altae orbis fronde iunctarum nubibus. Ante parte. Quisquis tractu diu. Iudicis dominari frigida origo surgere fabricator. <a href="#tab4">Social media</a>  piscibus figuras speciem evolvit ulla obstabatque cuncta. Omni grandia terrenae pugnabant pondus quisque orbis ultima.</p>
+            <p>Social Media calidis mundum caligine coeperunt. Descenderat regat prima dissaepserat humanas tonitrua orbem bracchia. Principio galeae sole. Margine postquam evolvit eodem auroram uno omni ille secrevit regat.Coeptis undae traxit certis secrevit campoque liquidum margine gravitate. Animus convexi origine terrae cesserunt. Tumescere natus proximus lacusque. Otia faecis tonitrua erat hominum aliis radiis moles.</p>
+        </article>
+        <article class="tab_content" id="tab11">
+            <p>Copyright eurus supplex undae fulgura congestaque locis. Gravitate ante nabataeaque sua naturae satus ad. <a href="#tab2">Copyright</a> madescit pugnabant effervescere abscidit altae. Parte norant principio vultus reparabat omni rapidisque.</p>
+            <p>Copyright flamma erectos tempora sorbentur illas foret ambitae. Sata locavit triones. Terrarum tuti diversa formas diffundi prima quod regio premuntur. Ipsa pluviaque toto valles conversa quinta.</p>
+        </article>
+        <article class="tab_content" id="tab12">
+            <p>Contact erat pugnabant diffundi pondere temperiemque. Sole liquidas emicuit mundo pro secant. <a href="#tab1">Contact</a> aer nuper habentem tum in. Secant origine inposuit diverso zonae nubes nulli mundum sectamque.</p>
+            <p>Contact animalibus circumfluus ignea fert. Undas instabilis coercuit porrexerat. Uno legebantur plagae coeptis. Tanta opifex margine locis omnia obsistitur dispositam sublime erant. Fixo ubi mutatas tuba.</p>
+        </article>
+    </section>
+</div>
+<h3>Demo 4:</h3>
+<pre>
+responsive: yes
+collapsible: no
+usecookie: yes
+event: hover 
+transition: slideUp 
+callback functions: none
+initialtab: 4 
+</pre>
+<div class="tabs-4">
+	<ul class="tabs">
+		<li><a href="#tab13">General</a></li>
+		<li><a href="#tab14">Social Media</a></li>
+		<li><a href="#tab15">Copyright</a></li>
+		<li><a href="#tab16">Contact</a></li>
+	</ul>
+	<section class="tab_content_wrapper">
+        <article class="tab_content" id="tab13">
+            <p>General calidis mundum caligine coeperunt. Descenderat regat prima dissaepserat humanas tonitrua orbem bracchia. Principio galeae sole. Margine postquam evolvit eodem auroram uno omni ille secrevit regat.<a href="#tab3">General</a> coeptis undae traxit certis secrevit campoque liquidum margine gravitate. Animus convexi origine terrae cesserunt. Tumescere natus proximus lacusque. Otia faecis tonitrua erat hominum aliis radiis moles.</p>
+            <p>General conversa egens spectent tum sed diremit haec. Dei cinxit zephyro media congeriem septemque rudis. Terrae nubes utramque opifex diu magni reparabat meis nam. Turba habendum. Onus animal est pondere. Foret dedit obsistitur. Tenent homo caligine humanas sanctius dicere sive addidit. Ignea sibi. Aberant mundi iners dispositam altae orbis fronde iunctarum nubibus.</p>
+        </article>
+        <article class="tab_content" id="tab14">
+            <p>Social Media conversa egens spectent tum sed diremit haec. Dei cinxit zephyro media congeriem septemque rudis. Terrae nubes utramque opifex diu magni reparabat meis nam. Turba habendum. Onus animal est pondere. Foret dedit obsistitur. Tenent homo caligine humanas sanctius dicere sive addidit. Ignea sibi. Aberant mundi iners dispositam altae orbis fronde iunctarum nubibus. Ante parte. Quisquis tractu diu. Iudicis dominari frigida origo surgere fabricator. <a href="#tab4">Social media</a>  piscibus figuras speciem evolvit ulla obstabatque cuncta. Omni grandia terrenae pugnabant pondus quisque orbis ultima.</p>
+            <p>Social Media calidis mundum caligine coeperunt. Descenderat regat prima dissaepserat humanas tonitrua orbem bracchia. Principio galeae sole. Margine postquam evolvit eodem auroram uno omni ille secrevit regat.Coeptis undae traxit certis secrevit campoque liquidum margine gravitate. Animus convexi origine terrae cesserunt. Tumescere natus proximus lacusque. Otia faecis tonitrua erat hominum aliis radiis moles.</p>
+        </article>
+        <article class="tab_content" id="tab15">
+            <p>Copyright eurus supplex undae fulgura congestaque locis. Gravitate ante nabataeaque sua naturae satus ad. <a href="#tab2">Copyright</a> madescit pugnabant effervescere abscidit altae. Parte norant principio vultus reparabat omni rapidisque.</p>
+            <p>Copyright flamma erectos tempora sorbentur illas foret ambitae. Sata locavit triones. Terrarum tuti diversa formas diffundi prima quod regio premuntur. Ipsa pluviaque toto valles conversa quinta.</p>
+        </article>
+        <article class="tab_content" id="tab16">
+            <p>Contact erat pugnabant diffundi pondere temperiemque. Sole liquidas emicuit mundo pro secant. <a href="#tab1">Contact</a> aer nuper habentem tum in. Secant origine inposuit diverso zonae nubes nulli mundum sectamque.</p>
+            <p>Contact animalibus circumfluus ignea fert. Undas instabilis coercuit porrexerat. Uno legebantur plagae coeptis. Tanta opifex margine locis omnia obsistitur dispositam sublime erant. Fixo ubi mutatas tuba.</p>
+        </article>
+    </section>
+</div>
+<h3>Demo 5 (slideRight):</h3>
+<pre>
+responsive: yes
+collapsible: yes
+usecookie: yes
+event: click 
+transition: slideRight 
+callback functions: none
+initialtab: 3
+</pre>
+<div class="tabs-5">
+	<ul class="tabs">
+		<li><a href="#tab17">General</a></li>
+		<li><a href="#tab18">Social Media</a></li>
+		<li><a href="#tab19">Copyright</a></li>
+		<li><a href="#tab20">Contact</a></li>
+	</ul>
+	<section class="tab_content_wrapper">
+        <article class="tab_content" id="tab17">
+            <p>General calidis mundum caligine coeperunt. Descenderat regat prima dissaepserat humanas tonitrua orbem bracchia. Principio galeae sole. Margine postquam evolvit eodem auroram uno omni ille secrevit regat.<a href="#tab3">General</a> coeptis undae traxit certis secrevit campoque liquidum margine gravitate. Animus convexi origine terrae cesserunt. Tumescere natus proximus lacusque. Otia faecis tonitrua erat hominum aliis radiis moles.</p>
+            <p>General conversa egens spectent tum sed diremit haec. Dei cinxit zephyro media congeriem septemque rudis. Terrae nubes utramque opifex diu magni reparabat meis nam. Turba habendum. Onus animal est pondere. Foret dedit obsistitur. Tenent homo caligine humanas sanctius dicere sive addidit. Ignea sibi. Aberant mundi iners dispositam altae orbis fronde iunctarum nubibus.</p>
+        </article>
+        <article class="tab_content" id="tab18">
+            <p>Social Media conversa egens spectent tum sed diremit haec. Dei cinxit zephyro media congeriem septemque rudis. Terrae nubes utramque opifex diu magni reparabat meis nam. Turba habendum. Onus animal est pondere. Foret dedit obsistitur. Tenent homo caligine humanas sanctius dicere sive addidit. Ignea sibi. Aberant mundi iners dispositam altae orbis fronde iunctarum nubibus. Ante parte. Quisquis tractu diu. Iudicis dominari frigida origo surgere fabricator. <a href="#tab4">Social media</a>  piscibus figuras speciem evolvit ulla obstabatque cuncta. Omni grandia terrenae pugnabant pondus quisque orbis ultima.</p>
+            <p>Social Media calidis mundum caligine coeperunt. Descenderat regat prima dissaepserat humanas tonitrua orbem bracchia. Principio galeae sole. Margine postquam evolvit eodem auroram uno omni ille secrevit regat.Coeptis undae traxit certis secrevit campoque liquidum margine gravitate. Animus convexi origine terrae cesserunt. Tumescere natus proximus lacusque. Otia faecis tonitrua erat hominum aliis radiis moles.</p>
+        </article>
+        <article class="tab_content" id="tab19">
+            <p>Copyright eurus supplex undae fulgura congestaque locis. Gravitate ante nabataeaque sua naturae satus ad. <a href="#tab2">Copyright</a> madescit pugnabant effervescere abscidit altae. Parte norant principio vultus reparabat omni rapidisque.</p>
+            <p>Copyright flamma erectos tempora sorbentur illas foret ambitae. Sata locavit triones. Terrarum tuti diversa formas diffundi prima quod regio premuntur. Ipsa pluviaque toto valles conversa quinta.</p>
+        </article>
+        <article class="tab_content" id="tab20">
+            <p>Contact erat pugnabant diffundi pondere temperiemque. Sole liquidas emicuit mundo pro secant. <a href="#tab1">Contact</a> aer nuper habentem tum in. Secant origine inposuit diverso zonae nubes nulli mundum sectamque.</p>
+            <p>Contact animalibus circumfluus ignea fert. Undas instabilis coercuit porrexerat. Uno legebantur plagae coeptis. Tanta opifex margine locis omnia obsistitur dispositam sublime erant. Fixo ubi mutatas tuba.</p>
+        </article>
+    </section>
+</div>
+<h3>Demo 6:</h3>
+<pre>
+responsive: yes
+collapsible: yes
+usecookie: yes
+event: click 
+transition: scaleDown 
+callback functions: none
+initialtab: 4 
+</pre>
+<div class="tabs-6">
+	<ul class="tabs">
+        <li><a href="#tab21">General</a></li>
+        <li><a href="#tab22">Social Media</a></li>
+        <li><a href="#tab23">Copyright</a></li>
+        <li><a href="#tab24">Contact</a></li>
+    </ul>
+	<section class="tab_content_wrapper">
+        <article class="tab_content" id="tab21">
+            <p>General calidis mundum caligine coeperunt. Descenderat regat prima dissaepserat humanas tonitrua orbem bracchia. Principio galeae sole. Margine postquam evolvit eodem auroram uno omni ille secrevit regat.<a href="#tab3">General</a> coeptis undae traxit certis secrevit campoque liquidum margine gravitate. Animus convexi origine terrae cesserunt. Tumescere natus proximus lacusque. Otia faecis tonitrua erat hominum aliis radiis moles.</p>
+            <p>General conversa egens spectent tum sed diremit haec. Dei cinxit zephyro media congeriem septemque rudis. Terrae nubes utramque opifex diu magni reparabat meis nam. Turba habendum. Onus animal est pondere. Foret dedit obsistitur. Tenent homo caligine humanas sanctius dicere sive addidit. Ignea sibi. Aberant mundi iners dispositam altae orbis fronde iunctarum nubibus.</p>
+        </article>
+        <article class="tab_content" id="tab22">
+            <p>Social Media conversa egens spectent tum sed diremit haec. Dei cinxit zephyro media congeriem septemque rudis. Terrae nubes utramque opifex diu magni reparabat meis nam. Turba habendum. Onus animal est pondere. Foret dedit obsistitur. Tenent homo caligine humanas sanctius dicere sive addidit. Ignea sibi. Aberant mundi iners dispositam altae orbis fronde iunctarum nubibus. Ante parte. Quisquis tractu diu. Iudicis dominari frigida origo surgere fabricator. <a href="#tab4">Social media</a>  piscibus figuras speciem evolvit ulla obstabatque cuncta. Omni grandia terrenae pugnabant pondus quisque orbis ultima.</p>
+            <p>Social Media calidis mundum caligine coeperunt. Descenderat regat prima dissaepserat humanas tonitrua orbem bracchia. Principio galeae sole. Margine postquam evolvit eodem auroram uno omni ille secrevit regat.Coeptis undae traxit certis secrevit campoque liquidum margine gravitate. Animus convexi origine terrae cesserunt. Tumescere natus proximus lacusque. Otia faecis tonitrua erat hominum aliis radiis moles.</p>
+        </article>
+        <article class="tab_content" id="tab23">
+            <p>Copyright eurus supplex undae fulgura congestaque locis. Gravitate ante nabataeaque sua naturae satus ad. <a href="#tab2">Copyright</a> madescit pugnabant effervescere abscidit altae. Parte norant principio vultus reparabat omni rapidisque.</p>
+            <p>Copyright flamma erectos tempora sorbentur illas foret ambitae. Sata locavit triones. Terrarum tuti diversa formas diffundi prima quod regio premuntur. Ipsa pluviaque toto valles conversa quinta.</p>
+        </article>
+        <article class="tab_content" id="tab24">
+            <p>Contact erat pugnabant diffundi pondere temperiemque. Sole liquidas emicuit mundo pro secant. <a href="#tab1">Contact</a> aer nuper habentem tum in. Secant origine inposuit diverso zonae nubes nulli mundum sectamque.</p>
+            <p>Contact animalibus circumfluus ignea fert. Undas instabilis coercuit porrexerat. Uno legebantur plagae coeptis. Tanta opifex margine locis omnia obsistitur dispositam sublime erant. Fixo ubi mutatas tuba.</p>
+        </article>
+    </section>
 </div>
 
+<h3>Demo 7:</h3>
+<pre>
+responsive: yes
+collapsible: yes
+usecookie: yes
+event: click 
+transition: fade 
+callback functions: none
+initialtab: 2 
+</pre>
+<div class="tabs-7">
+	<ul class="tabs">
+        <li><a href="#tab25">General</a></li>
+        <li><a href="#tab26">Social Media</a></li>
+        <li><a href="#tab27">Copyright</a></li>
+        <li><a href="#tab28">Contact</a></li>
+    </ul>
+	<section class="tab_content_wrapper">
+        <article class="tab_content" id="tab25">
+            <p>General calidis mundum caligine coeperunt. Descenderat regat prima dissaepserat humanas tonitrua orbem bracchia. Principio galeae sole. Margine postquam evolvit eodem auroram uno omni ille secrevit regat.<a href="#tab3">General</a> coeptis undae traxit certis secrevit campoque liquidum margine gravitate. Animus convexi origine terrae cesserunt. Tumescere natus proximus lacusque. Otia faecis tonitrua erat hominum aliis radiis moles.</p>
+            <p>General conversa egens spectent tum sed diremit haec. Dei cinxit zephyro media congeriem septemque rudis. Terrae nubes utramque opifex diu magni reparabat meis nam. Turba habendum. Onus animal est pondere. Foret dedit obsistitur. Tenent homo caligine humanas sanctius dicere sive addidit. Ignea sibi. Aberant mundi iners dispositam altae orbis fronde iunctarum nubibus.</p>
+        </article>
+        <article class="tab_content" id="tab26">
+            <p>Social Media conversa egens spectent tum sed diremit haec. Dei cinxit zephyro media congeriem septemque rudis. Terrae nubes utramque opifex diu magni reparabat meis nam. Turba habendum. Onus animal est pondere. Foret dedit obsistitur. Tenent homo caligine humanas sanctius dicere sive addidit. Ignea sibi. Aberant mundi iners dispositam altae orbis fronde iunctarum nubibus. Ante parte. Quisquis tractu diu. Iudicis dominari frigida origo surgere fabricator. <a href="#tab4">Social media</a>  piscibus figuras speciem evolvit ulla obstabatque cuncta. Omni grandia terrenae pugnabant pondus quisque orbis ultima.</p>
+            <p>Social Media calidis mundum caligine coeperunt. Descenderat regat prima dissaepserat humanas tonitrua orbem bracchia. Principio galeae sole. Margine postquam evolvit eodem auroram uno omni ille secrevit regat.Coeptis undae traxit certis secrevit campoque liquidum margine gravitate. Animus convexi origine terrae cesserunt. Tumescere natus proximus lacusque. Otia faecis tonitrua erat hominum aliis radiis moles.</p>
+        </article>
+        <article class="tab_content" id="tab27">
+            <p>Copyright eurus supplex undae fulgura congestaque locis. Gravitate ante nabataeaque sua naturae satus ad. <a href="#tab2">Copyright</a> madescit pugnabant effervescere abscidit altae. Parte norant principio vultus reparabat omni rapidisque.</p>
+            <p>Copyright flamma erectos tempora sorbentur illas foret ambitae. Sata locavit triones. Terrarum tuti diversa formas diffundi prima quod regio premuntur. Ipsa pluviaque toto valles conversa quinta.</p>
+        </article>
+        <article class="tab_content" id="tab28">
+            <p>Contact erat pugnabant diffundi pondere temperiemque. Sole liquidas emicuit mundo pro secant. <a href="#tab1">Contact</a> aer nuper habentem tum in. Secant origine inposuit diverso zonae nubes nulli mundum sectamque.</p>
+            <p>Contact animalibus circumfluus ignea fert. Undas instabilis coercuit porrexerat. Uno legebantur plagae coeptis. Tanta opifex margine locis omnia obsistitur dispositam sublime erant. Fixo ubi mutatas tuba.</p>
+        </article>
+    </section>
+</div>
+
+
+</div>
 <!-- jQuery --> 
-<!-- <script src="js/jquery-1.9.0.min.js"></script>  -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>  -->
+<script src="js/jquery-1.9.0.min.js"></script>
 <!-- jQueryTab.js --> 
 <script src="js/jQueryTab.js"></script> 
 <script type="text/javascript">
 // initializing jQueryTab plugin 
-$.jQueryTab({
-    responsive:true,			// enable accordian on smaller screens
-    collapsible:true,			// allow all tabs to collapse on accordians
-    useCookie: true,			// remember last active tab using cookie
-    openOnhover: false,			// open tab on hover
-    initialTab: 2,				// tab to open initially; start count at 1 not 0
+$('.tabs-1').jQueryTab({
+    initialTab:2,				// tab to open initially; start count at 1 not 0
+    tabInTransition: 'fadeIn',
+    tabOutTransition: 'scaleUpOut',
+    cookieName: 'active-tab-1' 
+});
+$('.tabs-2').jQueryTab({
+    initialTab: 3,
+    openOnhover: true,
+    tabInTransition: 'flipIn',
+    tabOutTransition: 'flipOut',
+    cookieName: 'active-tab-2'
     
-    cookieName: 'active-tab',	// name of the cookie set to remember last active tab
-    cookieExpires: 365,			// when it expires in days or standard UTC time
-    cookiePath: '',				// path on which cookie is accessible
-    cookieDomain:'',			// domain of the cookie
-    cookieSecure: false,		// enable secure cookie - requires https connection to transfer
+});
+$('.tabs-3').jQueryTab({
+    responsive:false,
+    useCookie: false,
+    initialTab: 1,
+    tabInTransition: 'rotateIn',
+    tabOutTransition: 'rotateOut',
+    before: function(){ alert('Hello from before!'); },			// function to call before tab is opened
+    after: function(){ alert('Hello from after!') }				// function to call after tab is opened
+    
+});
+$('.tabs-4').jQueryTab({
+    openOnhover: true,
+    collapsible:false,
+    initialTab: 4,
+    tabInTransition: 'slideUpIn',
+    tabOutTransition: 'slideUpOut',
+    cookieName: 'active-tab-4'
+    
+});
+$('.tabs-5').jQueryTab({
+    initialTab: 3,
+    tabInTransition: 'slideRightIn',
+	tabOutTransition: 'slideRightOut',
+    cookieName: 'active-tab-5'
+    
+});
+$('.tabs-6').jQueryTab({
+    initialTab: 4,
+    tabInTransition: 'scaleDownIn',
+    tabOutTransition: 'scaleDownOut',
+    cookieName: 'active-tab-6'
+    
+});
+$('.tabs-7').jQueryTab({
+    initialTab: 2,
+    tabInTransition: 'fadeIn',
+    tabOutTransition: 'fadeOut',
+    cookieName: 'active-tab-7'
+    
 });
 
 
-// experiments
-var random_no = 1+(~~(Math.random()*100) % 4);
-jQuery('.opentab2').attr('href', '#tab'+(1+(~~(Math.random()*100) % 4)));
-
-jQuery('.opentab1').attr('href', '#tab'+random_no).on('click', function(e){
-	$('.tabs').data('jQueryTab').openTab(random_no);
-	e.preventDefault();
-});
-jQuery('.addmoretabs').on('click', function(e){
-	$('.tabs').append('<li><a href="#tab'+($('.tabs li').length+1)+'">tab'+($('.tabs li').length+1)+'</a></li>');
-	$('.tab_content').last().after('<section class="tab_content" id="tab'+($('.tabs li').length+1)+'">This is the dummy content of section '+($('.tabs li').length)+'</section>');
-	$('.tabs').data('jQueryTab').addHeader();
-	e.preventDefault();
-});
-
-
-var hash = window.location.hash;
-if(hash) { 
-	$('.tabs').data('jQueryTab').openTab(parseInt(hash.replace('#tab',''))); 
-	window.location.hash ='';
-}
-	
 </script>
 </body>
 </html>
