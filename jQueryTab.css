@@ -16,7 +16,7 @@ h3{margin:30px 0 10px;}
 p{margin: 0 0 20px;}
 pre{ border: 1px solid #ddd; box-shadow: 1px 1px 0 #fff, 2px 2px 0 #ddd; margin:10px 0; padding: 10px; background: #fcfcfc; }
 
-#container{ width:840px; padding:0px 50px; margin:0 auto;}
+#container{ width:80%; padding:0px 50px; margin:0 auto;}
 
 a:link, a:visited{ color: #000; text-decoration:none;}
 a:hover{ color: #666;}
@@ -26,30 +26,32 @@ a:hover{ color: #666;}
 .tabs li{ float:left; }
 .tabs li a{ border-left: 1px solid #ccc; color:#21759B; display:block; font-weight:bold; padding: 15px 20px; }
 .tabs li:first-child a{ border-left: none; }
-.tabs li a:hover{ color:#D54E21; }
+.tabs li a:hover, .tabs li a:focus{ color:#D54E21; }
 .tabs .active a{ color: #000; }
 
 /* == accordion */
-.accordion_tabs { display:none; border-bottom: 3px double #ccc; padding: 10px 0; font-weight:bold;}
+.accordion_tabs { display:none; border-top: 1px solid #ccc; padding: 10px; font-weight: bold; background: #eee; }
+.tab_content_wrapper > .accordion_tabs:first-child{ border-top:none; }
 a.accordion_tabs:link, a.accordion_tabs:visited{ color: #21759B; }
-a.accordion_tabs:hover{ color:#D54E21; }
-a.accordion_tabs.active{ color: #000; }
+a.accordion_tabs:hover, a.accordion_tabs:focus{ color:#D54E21; }
+a.accordion_tabs.active{ color: #000; border-bottom: 1px solid #ccc;}
 
 /*  == tab content  */
 .tab_content_wrapper{ overflow:hidden;  position:relative; transition: all .3s ease-in-out .3s; }
 .tab_content{ transition: all .6s ease-in-out; padding:15px; background:#f6f6f6;}
 .toggle_display{display:block;}
 .toggle_position{ position:absolute; }
-.toggle_border{ border:1px solid #ccc; border-top: none; }
+.toggle_border{ border:1px solid #ccc; border-width: 0 1px 1px 1px; }
+.invert_border{ border-width: 1px 1px 0 1px;}
 
 /* Media Queries
 ***********************/
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 600px) {
   #container{ width:90%; padding:40px 20px; }
   .accordion_tabs{ display:block; }
   .tab_content_wrapper{ height:auto !important;}
-  .tab_content{ transition:none; padding:15px 0;}
+  .tab_content{ transition:none; padding:10px;}
   .toggle_display{display:none;}
   .toggle_position{ position:relative; }
-  .toggle_border{ border:none; }
+  .toggle_border{ border-width: 1px; }
 }

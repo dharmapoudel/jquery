@@ -279,7 +279,8 @@ $('.tabs-1').jQueryTab({
     initialTab:2,				// tab to open initially; start count at 1 not 0
     tabInTransition: 'fadeIn',
     tabOutTransition: 'scaleUpOut',
-    cookieName: 'active-tab-1' 
+    cookieName: 'active-tab-1',
+    tabPosition : 'bottom'
 });
 $('.tabs-2').jQueryTab({
     initialTab: 3,
@@ -295,8 +296,8 @@ $('.tabs-3').jQueryTab({
     initialTab: 1,
     tabInTransition: 'rotateIn',
     tabOutTransition: 'rotateOut',
-    before: function(){ alert('Hello from before!'); },			// function to call before tab is opened
-    after: function(){ alert('Hello from after!') }				// function to call after tab is opened
+    before: function(){ console.log('Hello from before!'); },			// function to call before tab is opened
+    after: function(){ console.log('Hello from after!') }				// function to call after tab is opened
     
 });
 $('.tabs-4').jQueryTab({

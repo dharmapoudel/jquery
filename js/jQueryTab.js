@@ -13,7 +13,7 @@ License:  GPLv3 ( http://www.gnu.org/licenses/gpl-3.0.html )
     this._defaults = $.fn.jQueryTab.defaults;
     this.wrapper = wrapper;
     this.$wrapper = $(wrapper);
-    this.tabs = this.$wrapper.find('.'+this.options.tabClass);
+    this.tabs = this.$wrapper.find('.'+this.options.tabClass).addClass('tabHeader');
     this.tabItems = this.tabs.find('li');
     this.tabLinks = this.tabItems.find("a");
     this.wrap = this.$wrapper.find('.'+this.options.contentWrapperClass);
@@ -59,6 +59,9 @@ License:  GPLv3 ( http://www.gnu.org/licenses/gpl-3.0.html )
           this.tabs.addClass('toggle_display');
           
         }
+        if(this.options.tabPosition==='bottom'){
+            this.tabs.insertAfter(this.wrap.addClass('invert_border'));
+        }
       },
       
       handleClasses: function(activeContent){
@@ -91,33 +94,53 @@ License:  GPLv3 ( http://www.gnu.org/licenses/gpl-3.0.html )
       },
       
       handleEvent: function(){
-         var self = this;
+        var self = this;
+        
+        // window is resized
         $(window).on('resize', function(){ self.resize(); } );
         
-        self.tabLinks.on((self.options.openOnhover)?'click, mouseenter' :'click' , function(event){										// when tab is clicked
-        event.preventDefault();																			// prevent default behaviour	
-        (typeof self.options.before === 'function') ? self.options.before.apply( this, arguments ) : '';		// call fxn before
-        self.handleTabs.call(this, self);															// call handleEvent fxn; self.options - data values
-        (typeof self.options.after === 'function') ? self.options.after.apply( this, arguments ) : '';		// call fxn after
-        });
-
-        if(self.options.responsive){																		// if accordion is enabled
-        self.alinks.on('click', function(event){						// when accordain header is clicked
-        event.preventDefault();									                            // prevent default behaviour
-        (typeof self.options.before === 'function') ? self.options.before.apply( this, arguments ) : '';	// call fxn before
-        self.handleAccordions.call(this, self); 									// call fxn to handle accordions
-        (typeof self.options.after === 'function') ? self.options.after.apply( this, arguments ) : '';	// call fxn after
-        });
+        
+        // navigate to the history -- will look into this after opentab function
+        /* if(self.options.useHistory){
+            window.onpopstate = function(event){
+              console.log(self.tabs.find('a[href="'+window.location.hash+'"]'));
+              self.tabLinks.add(self.alinks).filter('a[href="'+window.location.hash+'"]').trigger('click');
+            }
+        } */
+        
+        // when tab is focused
+        if(self.options.keyboardNavigation){
+            self.tabLinks.add(self.alinks).on('focus', function(event) {
+                var fxn_to_call = ($(this).hasClass('accordion_tabs'))? 'handleAccordions' : 'handleTabs';
+                self.tabber(fxn_to_call, this);
+            });
         }
+        
+        // tab heading is hovered or clicked
+        self.tabLinks.add(self.alinks).on((self.options.openOnhover)?'click, mouseenter' :'click', function(event){										// when tab is clicked
+            event.preventDefault();																			// prevent default behaviour	
+            var fxn_to_call = ($(this).hasClass('accordion_tabs'))? 'handleAccordions' : 'handleTabs';
+            self.tabber(fxn_to_call, this);
+        });
+        
+      },
+      
+      tabber: function(fxn_name, elem){
+        var self = this;
+        (typeof self.options.before === 'function') ? self.options.before.apply( elem, arguments ) : '';		// call fxn before
+        if(self.options.useHistory) self.updateBrowserHisotry($(elem).attr('href'));
+        self[fxn_name].call(elem, self); 														// call handleEvent fxn; self.options - data values
+        (typeof self.options.after === 'function') ? self.options.after.apply( elem, arguments ) : '';		// call fxn after
+      
       },
       
       handleTabs: function(self){
+        
         if($(this).parent().hasClass(self.activeClass)) return;												// do nothing when active tab is clicked
         
         var index = $(this).parent().index(),
             activeContent  = self.contents.eq(index);
         
-                
         self.tabItems.removeClass(self.activeClass).eq(index).addClass(self.activeClass);										// add active class to this tab
         self.wrap.height(activeContent.outerHeight());
         self.reOrder(activeContent);
@@ -219,6 +242,14 @@ License:  GPLv3 ( http://www.gnu.org/licenses/gpl-3.0.html )
         }
         return null;
       },
+      
+      //Update Browser History
+      updateBrowserHisotry: function(href){
+        if(!!(window.history && history.pushState)) {
+            if(window.location.hash !== href) history.pushState(null,null,href);
+        }
+      }
+      
   };
   /* initialize the jQueryTab plugin */
   $.fn.jQueryTab = function(options) {
@@ -235,7 +266,7 @@ License:  GPLv3 ( http://www.gnu.org/licenses/gpl-3.0.html )
     
     //classes settings
     tabClass:'tabs',				    // class of the tabs
-    accordionClass:'accordion_tabs',	        // class of the header of accordion on smaller screens
+    accordionClass:'accordion_tabs',	// class of the header of accordion on smaller screens
     contentWrapperClass:'tab_content_wrapper',		// class of content wrapper
     contentClass:'tab_content',		// class of container
     activeClass:'active',			// name of the class used for active tab
@@ -246,6 +277,11 @@ License:  GPLv3 ( http://www.gnu.org/licenses/gpl-3.0.html )
     collapsible:true,				// allow all tabs to collapse on accordians
     useCookie: true,				// remember last active tab using cookie
     openOnhover: false,			    // open tab on hover
+    useHistory: true,               // use the history api
+    keyboardNavigation: true,       // use keyboard for navigation
+    
+    //tabs settings
+    tabPosition: 'top',          // position of tab - top|bottom
     initialTab: 1,					// tab to open initially; start count at 1 not 0
 
     //cookie settings
@@ -274,9 +310,6 @@ License:  GPLv3 ( http://www.gnu.org/licenses/gpl-3.0.html )
 
 /* to dos */
 /* 
-1. fix bug when collapsible is true and resized
-3. look into opentab function 
-
-jQueryTab is back with unlimited  css3 transitions. Try out the few transitions already crafted for you. 
-Want more,  make your own and go crazy!
+1. look into opentab function 
+2. look into onpopstate issue
 */
