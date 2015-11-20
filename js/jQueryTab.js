@@ -109,15 +109,17 @@ License:  GPLv3 ( http://www.gnu.org/licenses/gpl-3.0.html )
         } */
         
         // when tab is focused
+        /*
         if(self.options.keyboardNavigation){
             self.tabLinks.add(self.alinks).on('focus', function(event) {
                 var fxn_to_call = ($(this).hasClass('accordion_tabs'))? 'handleAccordions' : 'handleTabs';
                 self.tabber(fxn_to_call, this);
             });
         }
+        */
         
         // tab heading is hovered or clicked
-        self.tabLinks.add(self.alinks).on((self.options.openOnhover)?'click, mouseenter' :'click', function(event){										// when tab is clicked
+        self.tabLinks.add(self.alinks).on((self.options.openOnhover)?'click mouseenter' :'click', function(event){										// when tab is clicked
             event.preventDefault();																			// prevent default behaviour	
             var fxn_to_call = ($(this).hasClass('accordion_tabs'))? 'handleAccordions' : 'handleTabs';
             self.tabber(fxn_to_call, this);
@@ -312,4 +314,5 @@ License:  GPLv3 ( http://www.gnu.org/licenses/gpl-3.0.html )
 /* 
 1. look into opentab function 
 2. look into onpopstate issue
+3. work into keyboard navigation
 */
