@@ -6,12 +6,14 @@ Want more? Make your own and go crazy!
 Tags: jQuery tabs, responsive tabs, tabbed content, tabbed, CSS3 tabs	
 Version: 2.0	
 License: GPLv3	
-Contributors: dharmapoudel	
+Contributors: dharmapoudel
 
+**[View Demo](http://www.dharmapoudel.com.np/projects/jquerytab/)**
 
 ###Description
 
 jQueryTab is yet another simple, responsive, lightweight jQuery tabs plugin for creating responsive tabbed panels with unlimited options and transition animations support.
+
 
 ###Features
 
@@ -167,3 +169,4 @@ jQueryTab is yet another simple, responsive, lightweight jQuery tabs plugin for 
 
 = 1.0  =
 * Initial Release
+
