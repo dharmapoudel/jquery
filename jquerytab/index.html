@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta content="charset=utf-8">
+<title>jQueryTab Plugin Example</title>
+<link rel="stylesheet" href="jQueryTab.css" type="text/css" media="screen" />
+</head>
+<body>
+<div id="container" style="margin-top:50px;">
+<h1>jQueryTab Plugin Example</h1>
+
+<h3>Demo 1:</h3>
+<div class="jquerytab_wrapper">
+	<ul class="tabs tabs-1">
+		<li><a href="#tab1">General</a></li>
+		<li><a href="#tab2">Social Media</a></li>
+		<li><a href="#tab3">Copyright</a></li>
+		<li><a href="#tab4">Contact</a></li>
+	</ul>
+	<section class="tab_content_wrap">
+        <article class="tab_content" id="tab1">
+            <p>General calidis mundum caligine coeperunt. Descenderat regat prima dissaepserat humanas tonitrua orbem bracchia. Principio galeae sole. Margine postquam evolvit eodem auroram uno omni ille secrevit regat.<a href="#tab3">General</a> coeptis undae traxit certis secrevit campoque liquidum margine gravitate. Animus convexi origine terrae cesserunt. Tumescere natus proximus lacusque. Otia faecis tonitrua erat hominum aliis radiis moles.</p>
+            <p>General conversa egens spectent tum sed diremit haec. Dei cinxit zephyro media congeriem septemque rudis. Terrae nubes utramque opifex diu magni reparabat meis nam. Turba habendum. Onus animal est pondere. Foret dedit obsistitur. Tenent homo caligine humanas sanctius dicere sive addidit. Ignea sibi. Aberant mundi iners dispositam altae orbis fronde iunctarum nubibus.</p>
+        </article>
+        <article class="tab_content" id="tab2">
+            <p>Social Media conversa egens spectent tum sed diremit haec. Dei cinxit zephyro media congeriem septemque rudis. Terrae nubes utramque opifex diu magni reparabat meis nam. Turba habendum. Onus animal est pondere. Foret dedit obsistitur. Tenent homo caligine humanas sanctius dicere sive addidit. Ignea sibi. Aberant mundi iners dispositam altae orbis fronde iunctarum nubibus. Ante parte. Quisquis tractu diu. Iudicis dominari frigida origo surgere fabricator. <a href="#tab4">Social media</a>  piscibus figuras speciem evolvit ulla obstabatque cuncta. Omni grandia terrenae pugnabant pondus quisque orbis ultima.</p>
+            <p>Social Media calidis mundum caligine coeperunt. Descenderat regat prima dissaepserat humanas tonitrua orbem bracchia. Principio galeae sole. Margine postquam evolvit eodem auroram uno omni ille secrevit regat.Coeptis undae traxit certis secrevit campoque liquidum margine gravitate. Animus convexi origine terrae cesserunt. Tumescere natus proximus lacusque. Otia faecis tonitrua erat hominum aliis radiis moles.</p>
+            <p>Social Media calidis mundum caligine coeperunt. Descenderat regat prima dissaepserat humanas tonitrua orbem bracchia. Principio galeae sole. Margine postquam evolvit eodem auroram uno omni ille secrevit regat.Coeptis undae traxit certis secrevit campoque liquidum margine gravitate. Animus convexi origine terrae cesserunt. Tumescere natus proximus lacusque. Otia faecis tonitrua erat hominum aliis radiis moles.</p>
+        </article>
+        <article class="tab_content" id="tab3">
+            <p>Copyright eurus supplex undae fulgura congestaque locis. Gravitate ante nabataeaque sua naturae satus ad. <a href="#tab2">Copyright</a> madescit pugnabant effervescere abscidit altae. Parte norant principio vultus reparabat omni rapidisque.</p>
+            <p>Copyright flamma erectos tempora sorbentur illas foret ambitae. Sata locavit triones. Terrarum tuti diversa formas diffundi prima quod regio premuntur. Ipsa pluviaque toto valles conversa quinta.</p>
+        </article>
+        <article class="tab_content" id="tab4">
+            <p>Contact erat pugnabant diffundi pondere temperiemque. Sole liquidas emicuit mundo pro secant. <a href="#tab1">Contact</a> aer nuper habentem tum in. Secant origine inposuit diverso zonae nubes nulli mundum sectamque.</p>
+            <p>Contact animalibus circumfluus ignea fert. Undas instabilis coercuit porrexerat. Uno legebantur plagae coeptis. Tanta opifex margine locis omnia obsistitur dispositam sublime erant. Fixo ubi mutatas tuba.</p>
+        </article>
+    </section>
+</div>
+
+    
+<div style="padding:10px;clear:both;"> 
+    <a class="opentab1" href="#tab2">Open tab directly</a> 
+    <a class="opentab2" target="_blank" href="#tab2">Open tab through url</a> 
+    <a class="addmoretabs" href="#"> add more tabs</a> 
+</div>
+
+</div>
+<!-- jQuery --> 
+<script src="jquery-1.9.0.min.js"></script>
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>  -->
+<!-- jQueryTab.js --> 
+<script src="jQueryTab.js"></script> 
+<script type="text/javascript">
+// initializing jQueryTab plugin 
+$.jQueryTab({
+    responsive:true,			// enable accordian on smaller screens
+    collapsible:true,			// allow all tabs to collapse on accordians
+    useCookie: true,			// remember last active tab using cookie
+    openOnhover: false,			// open tab on hover
+    initialTab: 1,				// tab to open initially; start count at 1 not 0
+    //tabTransition: 'fade',	// transitions to use - normal|fade|flip|scaleUp|slideLeft|scale
+    tabInTransition: 'scaleUpIn',
+	tabOutTransition: 'scaleUpOut',
+    tabClass:'tabs-1',				// class of the tabs
+	headerClass:'accordion_tabs',	// class of the header of accordion on smaller screens
+	contentClass:'tab_content',		// class of container
+	activeClass:'active',			// name of the class used for active tab
+    
+    cookieName: 'active-tab',	// name of the cookie set to remember last active tab
+    cookieExpires: 365,			// when it expires in days or standard UTC time
+    cookiePath: '',				// path on which cookie is accessible
+    cookieDomain:'',			// domain of the cookie
+    cookieSecure: false,		// enable secure cookie - requires https connection to transfer
+});
+
+
+// experiments
+var random_no = 1+(~~(Math.random()*100) % 4);
+jQuery('.opentab2').attr('href', '#tab'+(1+(~~(Math.random()*100) % 4)));
+
+jQuery('.opentab1').attr('href', '#tab'+random_no).on('click', function(e){
+	$('.tabs').data('jQueryTab').openTab(random_no);
+	e.preventDefault();
+});
+jQuery('.addmoretabs').on('click', function(e){
+	$('.tabs').append('<li><a href="#tab'+($('.tabs li').length+1)+'">tab'+($('.tabs li').length+1)+'</a></li>');
+	$('.tab_content').last().after('<section class="tab_content" id="tab'+($('.tabs li').length+1)+'">This is the dummy content of section '+($('.tabs li').length)+'</section>');
+	$('.tabs').data('jQueryTab').addHeader();
+	e.preventDefault();
+});
+
+/*
+var hash = window.location.hash;
+if(hash) { 
+	$('.tabs').data('jQueryTab').openTab(parseInt(hash.replace('#tab',''))); 
+	window.location.hash ='';
+} */
+	
+</script>
+</body>
+</html>

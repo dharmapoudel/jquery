@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="ie7 oldie"></html><![endif]-->
+<!--[if IE 8]><html lang="en" class="ie8 oldie"></html><![endif]-->
+<!-- [if gt IE 8] <!--><html lang="en"><!-- <![endif]-->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQueryNav - Lightweight responsive jQuery navigation plugin</title>
+    <link href="jQueryNav.css" media="screen, projection" rel="stylesheet" type="text/css">
+  </head>
+  <body class="home-page">
+    <div class="container">
+      <header id="site-header">
+        <br />
+          <h2>jQueryNav</h2>
+          <br />
+          <h3 class="site-title-sub">Yet another jQuery Plugin for Responsive Menus</h3>
+        <div class="menu-button"><br /></div>
+        <nav class="jquerynav-wrapper">
+          <ul class="jquerynav clearfix">
+            <li><a href="">Item 1</a></li>
+            <li><a href="">Item 2</a>
+				<ul>
+					<li> <a href="#content">Sub 1 Item 1</a></li>
+					<li><a href="">Sub 1 Item 2</a></li>
+					<li><a href="">Sub 1 Item 3</a></li>
+					<li><a href="">Sub 1 Item 4</a></li>
+				</ul>
+            </li>
+            <li><a href="">Item 3</a>
+				<ul>
+                <li><a href="">Sub 1 Item 1</a></li>
+                <li><a href="">Sub 1 Item 2</a>
+                  <ul>
+                    <li><a href="">Sub 2 Item 1</a></li>
+                    <li><a href="">Sub 2 Item 2</a></li>
+                    <li><a href="">Sub 2 Item 3</a></li>
+                  </ul>
+                </li>
+                <li><a href="">Sub 1 Item 3</a>
+                  <ul>
+                    <li><a href="">Sub 2 Item 1</a></li>
+                    <li><a href="">Sub 2 Item 2</a>
+                      <ul>
+                        <li><a href="">Sub 3 Item 1</a></li>
+                        <li><a href="">Sub 3 Item 2</a></li>
+                        <li><a href="">Sub 3 Item 3</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="">Item 4</a>
+			  <ul>
+                <li><a href="">Sub 1 Item 1</a></li>
+                <li><a href="">Sub 1 Item 2</a>
+                  <ul>
+                    <li><a href="">Sub 2 Item 1</a></li>
+                    <li><a href="">Sub 2 Item 2</a></li>
+                    <li><a href="">Sub 2 Item 3</a></li>
+                  </ul>
+                </li>
+                <li><a href="">Sub 1 Item 3</a>
+                  <ul>
+                    <li><a href="">Sub 2 Item 1</a></li>
+                    <li><a href="">Sub 2 Item 2</a>
+                      <ul>
+                        <li><a href="">Sub 3 Item 1</a></li>
+                        <li><a href="">Sub 3 Item 2</a>
+							<ul>
+								<li><a href="">Sub 1 Item 1</a></li>
+								<li><a href="">Sub 1 Item 2</a></li>
+								<li><a href="">Sub 1 Item 3</a></li>
+							</ul>
+						</li>
+                        <li><a href="">Sub 3 Item 3</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="">Item 5</a>
+              <ul>
+                <li><a href="">Sub 1 Item 1</a></li>
+                <li><a href="">Sub 1 Item 2</a>
+                  <ul>
+                    <li><a href="">Sub 2 Item 1</a></li>
+                    <li><a href="">Sub 2 Item 2</a></li>
+                    <li><a href="">Sub 2 Item 3</a></li>
+                  </ul>
+                </li>
+                <li><a href="">Sub 1 Item 3</a>
+                  <ul>
+                    <li><a href="">Sub 2 Item 1</a></li>
+                    <li><a href="">Sub 2 Item 2</a>
+                      <ul>
+                        <li><a href="">Sub 3 Item 1</a></li>
+                        <li><a href="">Sub 3 Item 2</a>
+							<ul>
+								<li><a href="">Sub 1 Item 1</a></li>
+								<li><a href="">Sub 1 Item 2</a></li>
+								<li><a href="">Sub 1 Item 3</a></li>
+							</ul>
+						</li>
+                        <li><a href="">Sub 3 Item 3</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </header>
+	  </div>
+
+    <script src="js/jquery-1.9.0.min.js" type="text/javascript"></script>
+    <script src="js/jQueryNav.js" type="text/javascript"></script>
+    <script type="text/javascript">
+	(function($){
+		$('.jquerynav').jQueryNav();
+	})(jQuery);
+	</script>
+  </body>
+</html>
