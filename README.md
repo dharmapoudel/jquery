@@ -2,11 +2,11 @@ jQuery Plugins
 =========
 A collection of jQuery tab, navigation and slide plugins I developed a while ago.
 
-[**jQueryTab**](http://www.github.com/dharmapoudel/jquery/jquerytab/)
+[**jQueryTab**](https://github.com/dharmapoudel/jquery/tree/master/jquerytabv2)
 
-[**jQuery Navigation**](http://www.github.com/dharmapoudel/jquery/jquerytab/)
+[**jQuery Navigation**](https://github.com/dharmapoudel/jquery/tree/master/jquerynav/)
 
-[**jQuery Slider**](http://www.github.com/dharmapoudel/jquery/jqueryslider/)
+[**jQuery Slider**](https://github.com/dharmapoudel/jquery/tree/master/jqueryslider/)
 
 
 <img src="/jquerynav/nav.gif" width="190" /> 
